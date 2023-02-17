@@ -57,10 +57,11 @@ section:not(.homepage) h1{
 }
 
 
-/*.projectTitle,.sectionTitle{*/
-/*    opacity:0;*/
-/*    transition: opacity .5s ease-out;*/
-/*}*/
+.projectTitle,.sectionTitle{
+    opacity:0;
+    transition: opacity .75s ease-out;
+
+}
 
 
 
@@ -75,7 +76,7 @@ section:not(.homepage) h1{
 
 
 .sub{
-    line-height: 0.25;
+    line-height: 0.65;
     min-height: 1em;
 
 }
@@ -85,17 +86,8 @@ section:not(.homepage) h1{
     font-weight:200;
 }
 
-.partTitle{
-    display: block;
-    transform: translateY(120%);
-    transition: transform 0.33s ease-out;
+.active {
+    opacity: 1;
+    transition: opacity .5s ease-out;
 
-}
-
-.active .eltTitle:last-child .partTitle{
-    transition-delay: 0.165s;
-}
-
-.active .partTitle{
-    transform: translateY(0%);
 }

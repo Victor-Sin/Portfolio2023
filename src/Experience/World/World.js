@@ -63,23 +63,55 @@ export default class World
 
 
         projects.forEach(project => {
+            const tl = gsap.timeline();
+            const elts = project.querySelectorAll('.partTitle')
+            const sub = project.querySelector('.sub .partTitle');
+            function enterAnim(tl){
+                tl.set(elts,{
+                    yPercent:120,
+                })
+                    .to(elts[0],{
+                        yPercent:-120,
+                        duration:0.5
+                    })
+                    .to(sub ? sub : elts[1],{
+                        yPercent:-120,
+                        duration:0.5
+                    },"<0.125")
+            }
+
+            function leaveAnim(tl){
+                tl
+                    .to(elts[0],{
+                        yPercent:-240,
+                        duration:0.33
+                    })
+                    .to(sub ? sub : elts[1],{
+                        yPercent:-240,
+                        duration:0.33
+                    },"<0.125")
+            }
+
+
             gsap.to(project,{
                 scrollTrigger: {
                     trigger: project,
                     markers: true,
-                    start: "bottom 90%", // when the top of the trigger hits the top of the viewport
-                    end: "top 30%", // end after scrolling 500px beyond the start
+                    start: "120% 90%", // when the top of the trigger hits the top of the viewport
+                    end: "25% 30%", // end after scrolling 500px beyond the start
                     onEnter: (self) => {
-                        project.classList.toggle('active');
+                        enterAnim(tl)
                     },
                     onLeave: (self) => {
-                        project.classList.toggle('active');
+                       leaveAnim(tl)
                     },
                     onEnterBack: (self) => {
-                        project.classList.toggle('active');
+                        enterAnim(tl)
+
                     },
                     onLeaveBack: (self) => {
-                        project.classList.toggle('active');
+                        leaveAnim(tl)
+
                     }
                 }
             })

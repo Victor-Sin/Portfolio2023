@@ -75,8 +75,7 @@ section:not(.homepage) h1{
 
 
 .sub{
-    line-height: 0.25;
-    min-height: 1em;
+    min-height: 0.5em;
 
 }
 
@@ -88,14 +87,5 @@ section:not(.homepage) h1{
 .partTitle{
     display: block;
     transform: translateY(120%);
-    transition: transform 0.33s ease-out;
 
-}
-
-.active .eltTitle:last-child .partTitle{
-    transition-delay: 0.165s;
-}
-
-.active .partTitle{
-    transform: translateY(0%);
 }

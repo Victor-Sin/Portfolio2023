@@ -26,5 +26,10 @@ export default [
         name: 'foxModel',
         type: 'gltfModel',
         path: 'models/Fox/glTF/Fox.gltf'
+    },
+    {
+        name: 'gradientTexture',
+        type: 'texture',
+        path: 'textures/gradients/3.jpg'
     }
 ]

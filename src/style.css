@@ -2,12 +2,21 @@
 {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-size:clamp(10px,50vw,14px);
+}
+
+html{
+    scroll-behavior: initial;
+
 }
 
 html,
 body
 {
-    overflow: hidden;
+    background :linear-gradient(360deg, rgba(92,36,36,1) 10%, rgba(218,115,115,1) 85%);
+    min-height: 100%;
+    height: auto;
 }
 
 .webgl
@@ -16,4 +25,77 @@ body
     top: 0;
     left: 0;
     outline: none;
+}
+
+.content{
+    position: relative;
+    z-index: 1;
+}
+
+.section{
+    position: relative;
+    height: 100vh;
+}
+
+h1{
+    font-size: clamp(2em,10vw,9em);
+    text-transform:uppercase;
+    color:white;
+    font-family: 'Unbounded';
+    font-weight: 600;
+    padding: 0.25em;
+    line-height: 1;
+}
+
+section:not(.homepage) h1{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+
+}
+
+
+/*.projectTitle,.sectionTitle{*/
+/*    opacity:0;*/
+/*    transition: opacity .5s ease-out;*/
+/*}*/
+
+
+
+.partTitle,.eltTitle{
+    font-size: clamp(2rem,10vw,9rem);
+
+}
+
+.eltTitle{
+    overflow: hidden;
+}
+
+
+.sub{
+    line-height: 0.25;
+    min-height: 1em;
+
+}
+
+.sub span{
+    font-size: 0.5em;
+    font-weight:200;
+}
+
+.partTitle{
+    display: block;
+    transform: translateY(120%);
+    transition: transform 0.33s ease-out;
+
+}
+
+.active .eltTitle:last-child .partTitle{
+    transition-delay: 0.165s;
+}
+
+.active .partTitle{
+    transform: translateY(0%);
 }

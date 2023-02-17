@@ -1,12 +1,8 @@
 import Experience from "../../Experience";
 import {Clock} from "three";
-import EventEmitter from "../Utils/EventEmitter";
+import EventEmitter from "../../Utils/EventEmitter";
 
 export default class Entity extends EventEmitter{
-    _mesh;
-    _material;
-    _geometry;
-
     constructor() {
         super()
         this.experience = new Experience()
@@ -19,29 +15,4 @@ export default class Entity extends EventEmitter{
         this.clock = new Clock();
         this.camera = this.experience.camera.instance
     }
-
-    getMesh(){
-        return this._mesh;
-    }
-
-    setMesh(mesh){
-        this._mesh = mesh;
-    }
-
-    getGeometry(){
-        return this._geometry;
-    }
-
-    setGeometry(geometry){
-        this._geometry = geometry;
-    }
-
-    getMaterial(){
-        return this._material;
-    }
-
-    setMaterial(material){
-        this._material = material;
-    }
-
 }

@@ -11,6 +11,8 @@
     "vite": "^4.0.4"
   },
   "dependencies": {
+    "@studio-freight/lenis": "^0.2.28",
+    "gsap": "^3.11.4",
     "lil-gui": "^0.17.0",
     "three": "^0.148.0"
   }

@@ -59,7 +59,7 @@ section:not(.homepage) h1{
 
 .projectTitle,.sectionTitle{
     opacity:0;
-    transition: opacity .75s ease-out;
+    transition: opacity .5s ease-out;
 
 }
 
@@ -88,6 +88,6 @@ section:not(.homepage) h1{
 
 .active {
     opacity: 1;
-    transition: opacity .5s ease-out;
+    transition: opacity .75s ease-out;
 
 }

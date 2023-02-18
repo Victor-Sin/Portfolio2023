@@ -12,7 +12,6 @@ export default class Entity extends EventEmitter{
         this.time = this.experience.time
         this.world = this.experience.world
         this.debug = this.experience.debug
-        this.clock = new Clock();
         this.camera = this.experience.camera.instance
     }
 }

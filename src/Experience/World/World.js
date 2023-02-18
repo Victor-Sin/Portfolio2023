@@ -6,6 +6,7 @@ import data from '../../data.json'
 import Monolith from "./GlobalScene/Monolith";
 import * as THREE from "three";
 import Lenis from "@studio-freight/lenis";
+import Particules from "./GlobalScene/Particules";
 
 export default class World
 {
@@ -39,7 +40,7 @@ export default class World
             data.monoliths.projects.forEach((e,i) => {
                 this.projects.push(new Monolith("projects",i));
             })
-
+            this.particules = new Particules();
             this.environment = new Environment()
         })
         this.initScroll()
@@ -84,12 +85,12 @@ export default class World
                 tl
                     .to(elts[0],{
                         yPercent:-240,
-                        duration:0.33
+                        duration:0.25
                     })
                     .to(sub ? sub : elts[1],{
                         yPercent:-240,
-                        duration:0.33
-                    },"<0.125")
+                        duration:0.25
+                    },"<0.1")
             }
 
 
@@ -98,7 +99,7 @@ export default class World
                     trigger: project,
                     markers: true,
                     start: "120% 90%", // when the top of the trigger hits the top of the viewport
-                    end: "25% 30%", // end after scrolling 500px beyond the start
+                    end: "20% 30%", // end after scrolling 500px beyond the start
                     onEnter: (self) => {
                         enterAnim(tl)
                     },
@@ -141,6 +142,8 @@ export default class World
         if(this.lenis){
             this.lenis.raf(this.experience.time.current)
         }
-
+        if(this.particules){
+            this.particules.update()
+        }
     }
 }

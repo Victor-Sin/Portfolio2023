@@ -56,14 +56,6 @@ section:not(.homepage) h1{
 
 }
 
-
-/*.projectTitle,.sectionTitle{*/
-/*    opacity:0;*/
-/*    transition: opacity .5s ease-out;*/
-/*}*/
-
-
-
 .partTitle,.eltTitle{
     font-size: clamp(2rem,10vw,9rem);
 

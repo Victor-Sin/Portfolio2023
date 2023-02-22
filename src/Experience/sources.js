@@ -28,8 +28,8 @@ export default [
         path: 'models/Fox/glTF/Fox.gltf'
     },
     {
-        name: 'gradientTexture',
+        name: 'test',
         type: 'texture',
-        path: 'textures/gradients/3.jpg'
+        path: 'textures/test.png'
     }
 ]

@@ -1,9 +1,12 @@
 import * as THREE from 'three'
 import Entity from "./Entity";
 import data from "../../../data.json";
+import screenFragment from '../../Shaders/screen/fragment.glsl'
+import screenVertex from '../../Shaders/screen/vertex.glsl'
 
 export default class Monolith extends Entity
 {
+    static SCREEN_OBJ = [];
     static INDEX = 0;
     monolith;
     #block;
@@ -33,11 +36,13 @@ export default class Monolith extends Entity
         this.name = this.dataMonolith.name;
 
         this.monolith = new THREE.Group();
-        this.monolith.receiveShadow = true;
+
 
         this.setModel();
-        // this.setScreen()
-
+        // if(this.dataMonolith.source !== "none"){
+        //     this.setScreen()
+        //     Monolith.SCREEN_OBJ.push(this);
+        // }
 
         // const axesHelper = new THREE.AxesHelper( 5 );
         // this.monolith.add( axesHelper )
@@ -58,7 +63,7 @@ export default class Monolith extends Entity
 
     setModel()
     {
-        this.setTextures();
+        // this.setTextures();
 
         const geometry = new THREE.BoxGeometry(1,1,1);
         const material = new THREE.MeshStandardMaterial( {color: "#4bb2b2"} );
@@ -136,8 +141,17 @@ export default class Monolith extends Entity
     }
 
     setScreen(){
-        const geometry = new THREE.PlaneGeometry(1,1);
-        const material = new THREE.MeshToonMaterial( {color: "#623a5a"} );
+        const geometry = new THREE.PlaneGeometry(1,1,125);
+        // const material = new THREE.MeshToonMaterial( {color: "#623a5a"} )
+        const material = new THREE.ShaderMaterial({
+            vertexShader: screenVertex,
+            fragmentShader: screenFragment,
+            uniforms: {
+                uTexture: {value: this.resources.items.test},
+                uCursor : {value: new THREE.Vector2()},
+                uTime: {value: 0}
+            }
+        })
         this.#screen = new THREE.Mesh(geometry,material)
 
         if(this.nameFolder == "heroBanner") {
@@ -152,6 +166,19 @@ export default class Monolith extends Entity
         this.#screen.position.z = 0.5001;
 
         this.monolith.add(this.#screen)
+        this.mouse.addObjectsList(this.#screen);
+        this.mouse.addNewEvent(this.initMousePosition.bind(this))
+
+    }
+
+    initMousePosition(){
+        if(this.mouse.intersection && this.mouse.intersection.object == this.#screen){
+            const newPos = new THREE.Vector2(this.mouse.intersection.uv.x,this.mouse.intersection.uv.y)
+            this.#screen.material.uniforms.uCursor.value = newPos;
+        }
+        else{
+            this.#screen.material.uniforms.uCursor.value = new THREE.Vector2(-1,-1);
+        }
     }
 
     setParams(){
@@ -164,5 +191,6 @@ export default class Monolith extends Entity
     update()
     {
         // this.animation.mixer.update(this.time.delta * 0.001)
+        this.#screen.material.uniforms.uTime.value = this.time.elapsed
     }
 }

@@ -42,8 +42,9 @@ export default class World
             })
             this.particules = new Particules();
             this.environment = new Environment()
+            this.initScroll()
+
         })
-        this.initScroll()
     }
 
     initScroll(){
@@ -57,6 +58,15 @@ export default class World
             this.scrollY = -scroll
             this.camera.position.y = 21.5 + this.scrollY/this.experience.sizes.height * 40
             this.cameraControls.target.y = 20 + this.scrollY/this.experience.sizes.height * 40
+            this.environment.mainLight.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
+            this.environment.secondary.position.y = 25 + this.scrollY/this.experience.sizes.height * 40
+
+            // console.log(this.environment.mainLight.position)
+            if(Monolith.SCREEN_OBJ){
+                Monolith.SCREEN_OBJ.forEach(elt => {
+                    elt.initMousePosition()
+                })
+            }
         })
 
         const projects = gsap.utils.toArray('.projectTitle');
@@ -90,7 +100,7 @@ export default class World
                     .to(sub ? sub : elts[1],{
                         yPercent:-240,
                         duration:0.25
-                    },"<0.1")
+                    },"<0.125")
             }
 
 
@@ -144,6 +154,11 @@ export default class World
         }
         if(this.particules){
             this.particules.update()
+        }
+        if(Monolith.SCREEN_OBJ.length > 0){
+            Monolith.SCREEN_OBJ.forEach(elt => {
+                elt.update()
+            })
         }
     }
 }

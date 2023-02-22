@@ -9,14 +9,21 @@ export default class Environment
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.debug = this.experience.debug
+        this.parameters = {
+            colorDir: "#87558a",
+            colorMain: "#ff8484",
+            colorSecondary: "#569dd1"
+        }
         
         // Debug
         if(this.debug.active)
         {
             this.debugFolder = this.debug.ui.addFolder('environment')
+
         }
 
         this.setSunLight()
+        this.setPointLight()
         this.setEnvironmentMap()
     }
 
@@ -24,7 +31,7 @@ export default class Environment
     {
         this.sunLight = new THREE.DirectionalLight('#87558a', 4)
         this.sunLight.castShadow = true
-        this.sunLight.intensity = 1
+        this.sunLight.intensity = .5
         this.sunLight.shadow.camera.far = 15
         this.sunLight.shadow.mapSize.set(1024, 1024)
         this.sunLight.shadow.normalBias = 0.05
@@ -61,7 +68,46 @@ export default class Environment
                 .min(- 5)
                 .max(5)
                 .step(0.001)
+
+            this.debugFolder.addColor(this.parameters,'colorDir')
+                .onChange(() => {
+                    this.sunLight.color.set(this.parameters.colorDir)
+                })
         }
+    }
+
+    setPointLight(){
+        this.mainLight = new THREE.PointLight( "#ff8484", 75.0, 50, 2 );
+        this.mainLight.position.set( -7.5, 20, -15.300 );
+
+        this.secondary = new THREE.PointLight( "#569dd1", 75.0, 50, 2 );
+        this.secondary.position.set( 15.5, 30, 5.300 );
+        // Debug
+        if(this.debug.active)
+        {
+            this.debugFolder
+                .add(this.mainLight, 'intensity')
+                .name('mainLightIntensity')
+                .min(0)
+                .max(500)
+                .step(0.001);
+            this.debugFolder.addColor(this.parameters,'colorMain')
+                .onChange(() => {
+                    this.mainLight.color.set(this.parameters.colorMain)
+                })
+            this.debugFolder
+                .add(this.secondary, 'intensity')
+                .name('secondaryLightIntensity')
+                .min(0)
+                .max(500)
+                .step(0.001);
+            this.debugFolder.addColor(this.parameters,'colorSecondary')
+                .onChange(() => {
+                    this.secondary.color.set(this.parameters.colorSecondary)
+                })
+        }
+        this.scene.add( this.mainLight );
+        this.scene.add( this.secondary );
     }
 
     setEnvironmentMap()

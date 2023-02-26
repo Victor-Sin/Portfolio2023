@@ -33,6 +33,8 @@ export default class World
         // Wait for resources
         this.resources.on('ready', () =>
         {
+            this.environment = new Environment()
+
             // Setup
             data.monoliths.heroBanner.forEach(() => {
                 this.monoliths.push(new Monolith("heroBanner"));
@@ -41,7 +43,6 @@ export default class World
                 this.projects.push(new Monolith("projects",i));
             })
             this.particules = new Particules();
-            this.environment = new Environment()
             this.initScroll()
 
         })
@@ -59,7 +60,7 @@ export default class World
             this.camera.position.y = 21.5 + this.scrollY/this.experience.sizes.height * 40
             this.cameraControls.target.y = 20 + this.scrollY/this.experience.sizes.height * 40
             this.environment.mainLight.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
-            this.environment.secondary.position.y = 25 + this.scrollY/this.experience.sizes.height * 40
+            this.environment.secondary.position.y = 30 + this.scrollY/this.experience.sizes.height * 40
 
             // console.log(this.environment.mainLight.position)
             if(Monolith.SCREEN_OBJ){
@@ -109,7 +110,7 @@ export default class World
                     trigger: project,
                     markers: true,
                     start: "120% 90%", // when the top of the trigger hits the top of the viewport
-                    end: "20% 30%", // end after scrolling 500px beyond the start
+                    end: "25% 30%", // end after scrolling 500px beyond the start
                     onEnter: (self) => {
                         enterAnim(tl)
                     },

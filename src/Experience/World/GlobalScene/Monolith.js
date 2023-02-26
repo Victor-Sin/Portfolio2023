@@ -39,10 +39,10 @@ export default class Monolith extends Entity
 
 
         this.setModel();
-        // if(this.dataMonolith.source !== "none"){
-        //     this.setScreen()
-        //     Monolith.SCREEN_OBJ.push(this);
-        // }
+        if(this.dataMonolith.source !== "none"){
+            this.setScreen()
+            Monolith.SCREEN_OBJ.push(this);
+        }
 
         // const axesHelper = new THREE.AxesHelper( 5 );
         // this.monolith.add( axesHelper )
@@ -141,15 +141,23 @@ export default class Monolith extends Entity
     }
 
     setScreen(){
-        const geometry = new THREE.PlaneGeometry(1,1,125);
+        const geometry = new THREE.PlaneGeometry(1,1,16,16);
         // const material = new THREE.MeshToonMaterial( {color: "#623a5a"} )
         const material = new THREE.ShaderMaterial({
+            transparent: true,
+            alphaTest: 0.5,
             vertexShader: screenVertex,
             fragmentShader: screenFragment,
             uniforms: {
                 uTexture: {value: this.resources.items.test},
                 uCursor : {value: new THREE.Vector2()},
-                uTime: {value: 0}
+                uTime: {value: 0},
+                uMLightColor: {value: new THREE.Color(this.environment.sunLight.color)},
+                uLightColor: {value: new THREE.Color(this.environment.secondary.color)},
+                uLightPos: {value: this.environment.secondary.position},
+                uCubeColor: {value: new THREE.Color("#4bb2b2")},
+                uProgMouse: {value: 20}
+
             }
         })
         this.#screen = new THREE.Mesh(geometry,material)
@@ -175,9 +183,11 @@ export default class Monolith extends Entity
         if(this.mouse.intersection && this.mouse.intersection.object == this.#screen){
             const newPos = new THREE.Vector2(this.mouse.intersection.uv.x,this.mouse.intersection.uv.y)
             this.#screen.material.uniforms.uCursor.value = newPos;
+
         }
         else{
             this.#screen.material.uniforms.uCursor.value = new THREE.Vector2(-1,-1);
+
         }
     }
 
@@ -192,5 +202,19 @@ export default class Monolith extends Entity
     {
         // this.animation.mixer.update(this.time.delta * 0.001)
         this.#screen.material.uniforms.uTime.value = this.time.elapsed
+        this.#screen.material.uniforms.uLightPos.value = this.environment.secondary.position
+        if(this.mouse.intersection){
+            if(this.#screen.material.uniforms.uProgMouse.value > 1){
+                const tmp = this.#screen.material.uniforms.uProgMouse.value - 0.1;
+                this.#screen.material.uniforms.uProgMouse.value = Math.max(1,tmp)
+            }
+        }
+        else{
+            if(this.#screen.material.uniforms.uProgMouse.value < 20){
+                const tmp = this.#screen.material.uniforms.uProgMouse.value + (this.time.delta/60);
+                this.#screen.material.uniforms.uProgMouse.value = Math.max(20,tmp)
+            }
+        }
+
     }
 }

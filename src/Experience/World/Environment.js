@@ -81,7 +81,7 @@ export default class Environment
         this.mainLight.position.set( -7.5, 20, -15.300 );
 
         this.secondary = new THREE.PointLight( "#569dd1", 75.0, 50, 2 );
-        this.secondary.position.set( 17.5, 30, 5.300 );
+        this.secondary.position.set( 17.5, 20, 5.300 );
         // Debug
         if(this.debug.active)
         {

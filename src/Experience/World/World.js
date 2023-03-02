@@ -60,7 +60,7 @@ export default class World
             this.camera.position.y = 21.5 + this.scrollY/this.experience.sizes.height * 40
             this.cameraControls.target.y = 20 + this.scrollY/this.experience.sizes.height * 40
             this.environment.mainLight.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
-            this.environment.secondary.position.y = 30 + this.scrollY/this.experience.sizes.height * 40
+            this.environment.secondary.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
 
             // console.log(this.environment.mainLight.position)
             if(Monolith.SCREEN_OBJ){

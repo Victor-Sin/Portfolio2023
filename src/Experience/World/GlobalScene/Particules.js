@@ -5,7 +5,7 @@ import fragment from "../../Shaders/particules/fragment.glsl"
 
 export default class Particules extends Entity
 {
-    #particulesCount = 1000
+    #particulesCount = 2500
     #positions
     #colors
     #scales
@@ -31,7 +31,7 @@ export default class Particules extends Entity
         for(let i = 0;i < this.#particulesCount; i ++){
             const i3 = i*3;
             this.#positions[i3+0] = Math.random()*200-100;
-            this.#positions[i3+1] = Math.pow(Math.random()*15,2);
+            this.#positions[i3+1] = Math.pow(Math.random()*20,2);
             this.#positions[i3+2] = -Math.pow(Math.random()*5,2);
 
             this.#colors[i3+0] = Math.random()*255;
@@ -56,7 +56,7 @@ export default class Particules extends Entity
             vertexShader: vertex,
             fragmentShader: fragment,
             uniforms:{
-                uSize: {value: 200},
+                uSize: {value: 125},
                 uTime: {value: this.time.elapsed}
             }
         })

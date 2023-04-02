@@ -8,19 +8,25 @@ float random(float seed) {
 }
 
 void main() {
-    float frequency = 2.0; // fréquence des oscillations
-    float amplitude = random(aScale)*2.; // amplitude des oscillations
-    float offset = 0.1; // décalage de la position initiale
-    float timeMultiplier = random(aScale)*0.001; // multiplication du temps pour ajuster la vitesse des oscillations
-    float yPos = sin(uTime * frequency * timeMultiplier) * amplitude + offset;
+    float randVal = random(aScale);
+    float frequency = 2.0;
+    float amplitude = randVal * 2.0;
+    float offset = 0.1;
+    float timeMultiplier = randVal * 0.001;
+    float timeValue = uTime * timeMultiplier;
+    float yPos = sin(timeValue * frequency) * amplitude + offset;
+    float xPos = yPos * sin(timeValue * 0.001 + randVal * 10.0);
 
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-    modelPosition.y += yPos;
+    modelPosition.xy += vec2(xPos, yPos);
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
     gl_Position = projectedPosition;
-    gl_PointSize = uSize * aScale;
-    gl_PointSize *=  0.1 + (1.0 / - viewPosition.z);
+
+    float pointScale = uSize * aScale;
+    pointScale *= 0.1 + (1.0 / -viewPosition.z);
+    pointScale *= sin(randVal * 100.0 + uTime * 0.001);
+    gl_PointSize = pointScale;
 
     vUv = uv;
 }

@@ -155,9 +155,9 @@ export default class Monolith extends Entity
                 uMLightColor: {value: new THREE.Color(this.environment.sunLight.color)},
                 uLightColor: {value: new THREE.Color(this.environment.secondary.color)},
                 uLightPos: {value: this.environment.secondary.position},
-                uCubeColor: {value: new THREE.Color("#4bb2b2")},
-                uProgMouse: {value: 20}
-
+                uCubeColor: {value:  this.#block.material.color},
+                uProgMouse: {value: 20},
+                uDepth: {value:  this.dataMonolith.position[1]/-180*0.9}
             }
         })
         this.#screen = new THREE.Mesh(geometry,material)
@@ -193,6 +193,8 @@ export default class Monolith extends Entity
 
     setParams(){
         this.monolith.position.set(this.dataMonolith.position[0],this.dataMonolith.position[1],this.dataMonolith.position[2])
+        const depthColor = this.#block.material.color.lerp(new THREE.Color("#050715"),this.dataMonolith.position[1]/-180*0.9)
+        this.#block.material.color = depthColor
         this.monolith.scale.set(...this.dataMonolith.size)
         this.monolith.rotation.y = this.dataMonolith.rotation;
 

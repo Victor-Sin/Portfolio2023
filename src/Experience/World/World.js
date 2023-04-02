@@ -7,6 +7,9 @@ import Monolith from "./GlobalScene/Monolith";
 import * as THREE from "three";
 import Lenis from "@studio-freight/lenis";
 import Particules from "./GlobalScene/Particules";
+import Raylight from "./GlobalScene/Raylight";
+import WaterSurface from "./GlobalScene/WaterSurface";
+import Foglight from "./GlobalScene/Foglight";
 
 export default class World
 {
@@ -19,13 +22,19 @@ export default class World
         this.camera = this.experience.camera.instance
         this.cameraControls = this.experience.camera.controls
 
-        if(this.experience.debug.active)
-        this.monolithsFolder = this.experience.debug.ui.addFolder("monoliths");
+        if(this.experience.debug.active){
+            this.monolithsFolder = this.experience.debug.ui.addFolder("monoliths");
+            this.monolithsFolder.close();
+            this.raylightsFolder = this.experience.debug.ui.addFolder("raylights");
+            this.raylightsFolder.close();
+        }
+
         this.monoliths = [];
+        this.raylights = [];
         this.projects = [];
 
 
-        const fog = new THREE.Fog('#803535', 1, 45)
+        const fog = new THREE.Fog('#203642', 0, 45)
         this.scene.fog = fog
 
         gsap.registerPlugin(ScrollTrigger);
@@ -34,8 +43,12 @@ export default class World
         this.resources.on('ready', () =>
         {
             this.environment = new Environment()
-
+            this.fogLight = new Foglight();
+            this.water = new WaterSurface()
             // Setup
+            data.raylights.forEach(() => {
+                this.raylights.push(new Raylight())
+            })
             data.monoliths.heroBanner.forEach(() => {
                 this.monoliths.push(new Monolith("heroBanner"));
             })
@@ -61,8 +74,8 @@ export default class World
             this.cameraControls.target.y = 20 + this.scrollY/this.experience.sizes.height * 40
             this.environment.mainLight.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
             this.environment.secondary.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
+            this.environment.mainLight.intensity = 20 - (this.environment.mainLight.position.y / -200)*20
 
-            // console.log(this.environment.mainLight.position)
             if(Monolith.SCREEN_OBJ){
                 Monolith.SCREEN_OBJ.forEach(elt => {
                     elt.initMousePosition()
@@ -160,6 +173,14 @@ export default class World
             Monolith.SCREEN_OBJ.forEach(elt => {
                 elt.update()
             })
+        }
+        if(this.raylights.length > 0){
+            this.raylights.forEach(elt => {
+                elt.update()
+            })
+        }
+        if(this.water){
+            this.water.update();
         }
     }
 }

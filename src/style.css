@@ -14,7 +14,7 @@ html{
 html,
 body
 {
-    background :linear-gradient(360deg, rgba(92,36,36,1) 10%, rgba(218,115,115,1) 85%);
+    background :linear-gradient(360deg, rgb(5, 7, 21) 5%, rgb(53, 79, 93) 100%);
     min-height: 100%;
     height: auto;
 }
@@ -35,7 +35,7 @@ body
 .section{
     position: relative;
     height: 100vh;
-    opacity: 0;
+    /*opacity: 0;*/
 }
 
 h1{

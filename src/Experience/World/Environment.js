@@ -11,7 +11,7 @@ export default class Environment
         this.debug = this.experience.debug
         this.parameters = {
             colorDir: "#87558a",
-            colorMain: "#ff8484",
+            colorMain: "#8dbbd3",
             colorSecondary: "#569dd1"
         }
         
@@ -77,10 +77,10 @@ export default class Environment
     }
 
     setPointLight(){
-        this.mainLight = new THREE.PointLight( "#ff8484", 75.0, 50, 2 );
+        this.mainLight = new THREE.PointLight( "#37bdcc", 30, 50, 2 );
         this.mainLight.position.set( -7.5, 20, -15.300 );
 
-        this.secondary = new THREE.PointLight( "#569dd1", 75.0, 50, 2 );
+        this.secondary = new THREE.PointLight( "#569dd1", 150.0, 50, 2 );
         this.secondary.position.set( 17.5, 20, 5.300 );
         // Debug
         if(this.debug.active)
@@ -113,7 +113,7 @@ export default class Environment
     setEnvironmentMap()
     {
         this.environmentMap = {}
-        this.environmentMap.intensity = 2
+        this.environmentMap.intensity = 1.25
         this.environmentMap.texture = this.resources.items.environmentMapTexture
         this.environmentMap.texture.encoding = THREE.sRGBEncoding
         

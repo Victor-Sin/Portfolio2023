@@ -74,9 +74,10 @@
     ],
     "projects": [
       {
-        "name" : "FalloutBNR",
+        "name" : "ADeuxMains",
         "position": [0,-60,-11],
-        "size": [15,16,15],
+
+        "size": [14,17,14],
         "rotation": 0.4,
         "source": "test"
       },
@@ -137,7 +138,7 @@
         "source": "none"
       },
       {
-        "name" : "ADeuxMains",
+        "name" : "FalloutBNR",
         "position": [0,-180,-8],
         "size": [10,15,10],
         "rotation": 6.019,

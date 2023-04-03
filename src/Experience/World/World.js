@@ -83,26 +83,45 @@ export default class World
             }
         })
 
-        const projects = gsap.utils.toArray('.projectTitle');
+        const projects = gsap.utils.toArray('.project');
         const sectionsTitle = gsap.utils.toArray('.sectionTitle');
 
 
         projects.forEach(project => {
             const tl = gsap.timeline();
+            const projTitle = project.querySelector(".projectTitle")
             const elts = project.querySelectorAll('.partTitle')
+            const type = project.querySelector('.typeProject')
+            const date = project.querySelectorAll('.date')
             const sub = project.querySelector('.sub .partTitle');
+            const button = project.querySelector('.more');
             function enterAnim(tl){
                 tl.set(elts,{
+                    yPercent:120,
+                }).set(type,{
+                    yPercent:120,
+                }).set(date,{
                     yPercent:120,
                 })
                     .to(elts[0],{
                         yPercent:-120,
                         duration:0.5
-                    })
+                    }) .to(type,{
+                        yPercent:-115,
+                        duration:0.5
+                    },"<")
                     .to(sub ? sub : elts[1],{
                         yPercent:-120,
                         duration:0.5
                     },"<0.125")
+                    .to(date,{
+                        yPercent:-115,
+                        duration:0.5
+                    },"<")
+                    .to(button,{
+                        opacity: 1,
+                        duration: 0.25
+                    },"<")
             }
 
             function leaveAnim(tl){
@@ -111,19 +130,31 @@ export default class World
                         yPercent:-240,
                         duration:0.25
                     })
+                    .to(type,{
+                        yPercent:-240,
+                        duration:0.25
+                    },"<")
                     .to(sub ? sub : elts[1],{
                         yPercent:-240,
                         duration:0.25
                     },"<0.125")
+                    .to(date,{
+                        yPercent:-240,
+                        duration:0.25
+                    },"<")
+                    .to(button,{
+                        opacity: 0,
+                        duration: 0.1
+                    },"<")
             }
 
 
             gsap.to(project,{
                 scrollTrigger: {
-                    trigger: project,
+                    trigger: projTitle,
                     markers: true,
                     start: "120% 90%", // when the top of the trigger hits the top of the viewport
-                    end: "25% 30%", // end after scrolling 500px beyond the start
+                    end: "15% 30%", // end after scrolling 500px beyond the start
                     onEnter: (self) => {
                         enterAnim(tl)
                     },

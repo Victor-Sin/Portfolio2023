@@ -8,7 +8,6 @@
 
 html{
     scroll-behavior: initial;
-
 }
 
 html,
@@ -44,13 +43,14 @@ h1{
     color:white;
     font-family: 'Unbounded';
     font-weight: 600;
-    padding: 0.25em;
+    padding: 0.1em 0;
     line-height: 1;
 }
 
-section:not(.homepage) h1{
+
+.sectionTitle,.content{
     position:absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
@@ -58,7 +58,7 @@ section:not(.homepage) h1{
 }
 
 .partTitle,.eltTitle{
-    font-size: clamp(2rem,10vw,9rem);
+    font-size: clamp(2rem,10vw,7.5rem);
 
 }
 
@@ -81,4 +81,74 @@ section:not(.homepage) h1{
     display: block;
     transform: translateY(120%);
 
+}
+
+.subInformation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2em;
+}
+
+/*.content{*/
+/*    left: 70%;*/
+/*    text-align: left;*/
+/*}*/
+
+/*.textContainer{*/
+/*    overflow: hidden;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*.content h4{*/
+/*    color:white;*/
+/*    font-size: 1.5rem;*/
+/*    font-family: "Unbounded";*/
+/*    font-weight: 400;*/
+/*    transform: translateY(120%);*/
+
+/*}*/
+
+
+.textContainer{
+    overflow: hidden;
+}
+
+.content h4{
+    color:white;
+    font-size: 1.5rem;
+    font-family: "Unbounded";
+    font-weight: 300;
+    transform: translateY(120%);
+
+}
+
+.more{
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    margin: 3.5rem auto 0 auto;
+    padding: 0.5rem 1.5rem;
+    font-family: "Unbounded";
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 25px;
+    transition: all .25s ease-out;
+    opacity: 0;
+}
+
+.more span,.more i{
+    color: white;
+    font-weight: 300;
+    font-size: 1em;
+}
+
+
+.more:hover{
+    background: white;
+}
+
+.more:hover span,.more:hover i{
+    color: #1e2d36;
 }

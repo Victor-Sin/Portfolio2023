@@ -33,15 +33,20 @@ export default class Mouse extends Entity{
     }
 
     mouseMoveHandler(event){
+        this.raycastEvent(event)
+        this.eventsMouse.forEach(eltFunct => {
+            eltFunct(event);
+        })
+    }
+
+
+    raycastEvent(event){
         this.position.x = (event.clientX / window.innerWidth) * 2 - 1;
         this.position.y = -(event.clientY / window.innerHeight) * 2 + 1;
         if(this.raycast){
             this.raycast.setFromCamera(this.position, this.camera);
             this.updateIntersections()
         }
-        this.eventsMouse.forEach(eltFunct => {
-            eltFunct();
-        })
     }
 
     addNewEvent(event){

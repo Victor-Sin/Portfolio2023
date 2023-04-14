@@ -35,6 +35,14 @@ export default class Monolith extends Entity
 
         this.name = this.dataMonolith.name;
 
+        if(this.dataMonolith.format){
+            this.dataMonolithInfos = this.dataMonolith.format[this.sizes.format];
+        }
+        else{
+            this.dataMonolithInfos = this.dataMonolith;
+        }
+
+
         this.monolith = new THREE.Group();
 
 
@@ -48,6 +56,8 @@ export default class Monolith extends Entity
         // this.monolith.add( axesHelper )
 
         this.scene.add(this.monolith);
+        this.sizes.addNewEvent(this.onResize.bind(this))
+
     }
 
 
@@ -157,7 +167,7 @@ export default class Monolith extends Entity
                 uLightPos: {value: this.environment.secondary.position},
                 uCubeColor: {value:  this.#block.material.color},
                 uProgMouse: {value: 20},
-                uDepth: {value:  this.dataMonolith.position[1]/-180*0.9}
+                uDepth: {value:  this.dataMonolithInfos.position[1]/-180*0.9}
             }
         })
         this.#screen = new THREE.Mesh(geometry,material)
@@ -192,11 +202,24 @@ export default class Monolith extends Entity
     }
 
     setParams(){
-        this.monolith.position.set(this.dataMonolith.position[0],this.dataMonolith.position[1],this.dataMonolith.position[2])
-        const depthColor = this.#block.material.color.lerp(new THREE.Color("#050715"),this.dataMonolith.position[1]/-180*0.9)
+        this.monolith.position.set(this.dataMonolithInfos.position[0],this.dataMonolithInfos.position[1],this.dataMonolithInfos.position[2])
+        const depthColor = this.#block.material.color.lerp(new THREE.Color("#050715"),this.dataMonolithInfos.position[1]/-180*0.9)
         this.#block.material.color = depthColor
         this.monolith.scale.set(...this.dataMonolith.size)
-        this.monolith.rotation.y = this.dataMonolith.rotation;
+        this.monolith.rotation.y = this.dataMonolithInfos.rotation;
+
+
+    }
+
+    onResize(){
+        if(this.dataMonolith.format){
+            this.dataMonolithInfos = this.dataMonolith.format[this.sizes.format];
+        }
+        else{
+            this.dataMonolithInfos = this.dataMonolith;
+        }
+        this.monolith.rotation.y = this.dataMonolithInfos.rotation;
+        this.monolith.position.set(this.dataMonolithInfos.position[0],this.dataMonolithInfos.position[1],this.dataMonolithInfos.position[2])
 
     }
 
@@ -205,7 +228,7 @@ export default class Monolith extends Entity
         // this.animation.mixer.update(this.time.delta * 0.001)
         this.#screen.material.uniforms.uTime.value = this.time.elapsed
         this.#screen.material.uniforms.uLightPos.value = this.environment.secondary.position
-        if(this.mouse.intersection){
+        if(this.mouse.intersection && this.mouse.intersection.object == this.#screen){
             if(this.#screen.material.uniforms.uProgMouse.value > 1){
                 const tmp = this.#screen.material.uniforms.uProgMouse.value - 0.1;
                 this.#screen.material.uniforms.uProgMouse.value = Math.max(1,tmp)
@@ -213,8 +236,8 @@ export default class Monolith extends Entity
         }
         else{
             if(this.#screen.material.uniforms.uProgMouse.value < 20){
-                const tmp = this.#screen.material.uniforms.uProgMouse.value + (this.time.delta/60);
-                this.#screen.material.uniforms.uProgMouse.value = Math.max(20,tmp)
+                const tmp = this.#screen.material.uniforms.uProgMouse.value + ((this.time.delta*2)/60);
+                this.#screen.material.uniforms.uProgMouse.value = Math.min(20,tmp)
             }
         }
 

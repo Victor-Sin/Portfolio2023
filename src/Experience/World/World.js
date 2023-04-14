@@ -57,7 +57,6 @@ export default class World
             })
             this.particules = new Particules();
             this.initScroll()
-
         })
     }
 
@@ -152,7 +151,7 @@ export default class World
             gsap.to(project,{
                 scrollTrigger: {
                     trigger: projTitle,
-                    markers: true,
+                    // markers: true,
                     start: "120% 90%", // when the top of the trigger hits the top of the viewport
                     end: "15% 30%", // end after scrolling 500px beyond the start
                     onEnter: (self) => {
@@ -176,7 +175,7 @@ export default class World
             gsap.to(sectionTitle,{
                 scrollTrigger: {
                     trigger: sectionTitle,
-                    markers: true,
+                    // markers: true,
                     start: "bottom 90%", // when the top of the trigger hits the top of the viewport
                     end: "top 30%", // end after scrolling 500px beyond the start
                     onEnter: (self) => {
@@ -185,11 +184,6 @@ export default class World
                 }
             })
         });
-
-
-
-
-
     }
 
     update()

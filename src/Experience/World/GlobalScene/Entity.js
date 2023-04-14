@@ -15,5 +15,6 @@ export default class Entity extends EventEmitter{
         this.camera = this.experience.camera.instance
         this.mouse = this.experience.mouse
         this.environment = this.world.environment;
+        this.sizes = this.experience.sizes
     }
 }

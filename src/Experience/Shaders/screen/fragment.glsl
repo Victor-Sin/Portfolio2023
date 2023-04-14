@@ -32,7 +32,9 @@ void main() {
     uv += offset * mix(0.001, disc, 0.05);
     vec3 newColor = texture(uTexture, uv).rgb;
 
-    newColor = mix(uCubeColor * uMLightColor, newColor, min(0.75, 1.0 - uDepth * 0.75));
+    float progress = (20.- uProgMouse)/40.;
+
+    newColor = mix(uCubeColor * uMLightColor, newColor, min(0.75, 1.0 - uDepth * 0.75)  + progress);
     newColor = mix(uLightColor * diff, newColor, 0.65);
 
     float strength = 1.0 - (max(abs(vUv.x - 0.5), abs(vUv.y - 0.5)) - 0.1) * (noise * 1.5 + 2.5);

@@ -15,9 +15,10 @@ html{
 html,
 body
 {
-    background :linear-gradient(360deg, rgb(5, 7, 21) 5%, rgb(53, 79, 93) 100%);
+    background :linear-gradient(360deg, rgb(5, 7, 21) 5%, rgb(46, 70, 82) 100%);
     min-height: 100%;
     height: auto;
+    --textColor : #7be6ff;
 }
 
 .webgl
@@ -28,6 +29,36 @@ body
     outline: none;
 }
 
+#maskCanvas {
+    /* Appliquer le masque */
+    position: absolute;
+
+}
+
+header{
+    position: fixed;
+    width: 100%;
+    display: block;
+    top: 2.5rem;
+    z-index: 200;
+    mix-blend-mode: color-dodge;
+    opacity: 33%;
+
+}
+
+header nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4rem;
+}
+
+.nav-title{
+    font-family: Raleway;
+    font-size:1.5em;
+    font-weight: 400 ;
+    color:var(--textColor);
+}
+
 .content{
     position: relative;
     z-index: 1;
@@ -36,13 +67,15 @@ body
 .section{
     position: relative;
     height: 100vh;
+    mix-blend-mode: color-dodge;
+    opacity: 26%;
     /*opacity: 0;*/
 }
 
 h1{
     font-size: clamp(2em,10vw,9em);
     text-transform:uppercase;
-    color:white;
+    color:var(--textColor);
     font-family: 'Unbounded';
     font-weight: 600;
     padding: 0.1em 0;
@@ -61,7 +94,7 @@ h1{
 
 .partTitle,.eltTitle{
     font-size: clamp(2rem,10vw,8rem);
-    font-weight: 400;
+    font-weight: 300;
 
 }
 
@@ -98,10 +131,10 @@ h1{
 }
 
 .content h4{
-    color:white;
+    color:var(--textColor);
     font-size: 1.5rem;
-    font-family: "Unbounded";
-    font-weight: 300;
+    font-family: Raleway;
+    font-weight: 400;
     transform: translateY(120%);
 
 }
@@ -112,23 +145,23 @@ h1{
     align-items: center;
     margin: 3.5rem auto 0 auto;
     padding: 0.5rem 1.5rem;
-    font-family: "Unbounded";
+    font-family: "Raleway";
     background: transparent;
-    border: 1px solid white;
+    border: 1px solid var(--textColor);
     border-radius: 25px;
     transition: all .25s ease-out;
     opacity: 0;
 }
 
 .more span,.more i{
-    color: white;
-    font-weight: 300;
-    font-size: 1em;
+    color: var(--textColor);
+    font-weight: 500;
+    font-size: 1.5em;
 }
 
 
 .more:hover{
-    background: white;
+    background: var(--textColor);
 }
 
 .more:hover span,.more:hover i{
@@ -142,7 +175,7 @@ h1{
     display: flex;
     width: 80vw;
     justify-content: space-between;
-    color: white;
+    color: var(--textColor);
     font-family: Unbounded;
 }
 
@@ -172,7 +205,7 @@ h1{
 }
 
 .network{
-    color:white;
+    color:var(--textColor);
     text-decoration:underline;
     font-weight: 300;
     font-size: 16px;

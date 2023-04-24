@@ -76,7 +76,7 @@ export default class Monolith extends Entity
         // this.setTextures();
 
         const geometry = new THREE.BoxGeometry(1,1,1);
-        const material = new THREE.MeshStandardMaterial( {color: "#4bb2b2"} );
+        const material = new THREE.MeshStandardMaterial( {color: "#437a88"} );
         material.metalness = 0.45
         material.roughness = 0.75
         this.#block = new THREE.Mesh( geometry, material );
@@ -167,7 +167,7 @@ export default class Monolith extends Entity
                 uLightPos: {value: this.environment.secondary.position},
                 uCubeColor: {value:  this.#block.material.color},
                 uProgMouse: {value: 20},
-                uDepth: {value:  this.dataMonolithInfos.position[1]/-180*0.9}
+                uDepth: {value:  this.dataMonolithInfos.position[1]/-180}
             }
         })
         this.#screen = new THREE.Mesh(geometry,material)
@@ -181,7 +181,7 @@ export default class Monolith extends Entity
                 0
             )
         }
-        this.#screen.position.z = 0.5001;
+        this.#screen.position.z = 0.5005;
 
         this.monolith.add(this.#screen)
         this.mouse.addObjectsList(this.#screen);
@@ -203,7 +203,7 @@ export default class Monolith extends Entity
 
     setParams(){
         this.monolith.position.set(this.dataMonolithInfos.position[0],this.dataMonolithInfos.position[1],this.dataMonolithInfos.position[2])
-        const depthColor = this.#block.material.color.lerp(new THREE.Color("#050715"),this.dataMonolithInfos.position[1]/-180*0.9)
+        const depthColor = this.#block.material.color.lerp(new THREE.Color("#101826"),this.dataMonolithInfos.position[1]/-180)
         this.#block.material.color = depthColor
         this.monolith.scale.set(...this.dataMonolith.size)
         this.monolith.rotation.y = this.dataMonolithInfos.rotation;
@@ -226,20 +226,21 @@ export default class Monolith extends Entity
     update()
     {
         // this.animation.mixer.update(this.time.delta * 0.001)
-        this.#screen.material.uniforms.uTime.value = this.time.elapsed
-        this.#screen.material.uniforms.uLightPos.value = this.environment.secondary.position
-        if(this.mouse.intersection && this.mouse.intersection.object == this.#screen){
-            if(this.#screen.material.uniforms.uProgMouse.value > 1){
-                const tmp = this.#screen.material.uniforms.uProgMouse.value - 0.1;
-                this.#screen.material.uniforms.uProgMouse.value = Math.max(1,tmp)
+        if(this.experience.camera.isObjectInView(this.#block)){
+            this.#screen.material.uniforms.uTime.value = this.time.elapsed
+            this.#screen.material.uniforms.uLightPos.value = this.environment.secondary.position
+            if(this.mouse.intersection && this.mouse.intersection.object == this.#screen){
+                if(this.#screen.material.uniforms.uProgMouse.value > 1){
+                    let tmp = this.#screen.material.uniforms.uProgMouse.value - 0.1;
+                    this.#screen.material.uniforms.uProgMouse.value = Math.max(1,tmp)
+                }
+            }
+            else{
+                if(this.#screen.material.uniforms.uProgMouse.value < 20){
+                    const tmp = this.#screen.material.uniforms.uProgMouse.value + ((this.time.delta*2)/60);
+                    this.#screen.material.uniforms.uProgMouse.value = Math.min(20,tmp)
+                }
             }
         }
-        else{
-            if(this.#screen.material.uniforms.uProgMouse.value < 20){
-                const tmp = this.#screen.material.uniforms.uProgMouse.value + ((this.time.delta*2)/60);
-                this.#screen.material.uniforms.uProgMouse.value = Math.min(20,tmp)
-            }
-        }
-
     }
 }

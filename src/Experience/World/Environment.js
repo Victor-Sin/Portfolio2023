@@ -10,7 +10,7 @@ export default class Environment
         this.resources = this.experience.resources
         this.debug = this.experience.debug
         this.parameters = {
-            colorDir: "#87558a",
+            colorDir: "#80aed0",
             colorMain: "#8dbbd3",
             colorSecondary: "#569dd1"
         }
@@ -29,7 +29,7 @@ export default class Environment
 
     setSunLight()
     {
-        this.sunLight = new THREE.DirectionalLight('#87558a', 4)
+        this.sunLight = new THREE.DirectionalLight('#80aed0', 4)
         this.sunLight.castShadow = true
         this.sunLight.intensity = .5
         this.sunLight.shadow.camera.far = 15

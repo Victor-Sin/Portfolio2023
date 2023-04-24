@@ -49,7 +49,9 @@ export default class Raylight extends Entity
 
     update()
     {
-        this.#mesh.material.uniforms.uTime.value = this.time.elapsed
+        if(this.experience.camera.isObjectInView(this.#mesh)) {
 
+            this.#mesh.material.uniforms.uTime.value = this.time.elapsed
+        }
     }
 }

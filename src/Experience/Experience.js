@@ -41,6 +41,7 @@ export default class Experience
         this.world = new World()
         this.mouse = new Mouse();
 
+
         // Resize event
         this.sizes.on('resize', () =>
         {

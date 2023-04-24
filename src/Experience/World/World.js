@@ -34,7 +34,8 @@ export default class World
         this.projects = [];
 
 
-        const fog = new THREE.Fog('#203642', 0, 45)
+        const fog = new THREE.Fog('#1E2C3A', 0, 120)
+        // const fog = new THREE.FogExp2 ('#203642', 0.5)
         this.scene.fog = fog
 
         gsap.registerPlugin(ScrollTrigger);
@@ -49,9 +50,9 @@ export default class World
             data.raylights.forEach(() => {
                 this.raylights.push(new Raylight())
             })
-            data.monoliths.heroBanner.forEach(() => {
-                this.monoliths.push(new Monolith("heroBanner"));
-            })
+            // data.monoliths.heroBanner.forEach(() => {
+            //     this.monoliths.push(new Monolith("heroBanner"));
+            // })
             data.monoliths.projects.forEach((e,i) => {
                 this.projects.push(new Monolith("projects",i));
             })
@@ -70,10 +71,10 @@ export default class World
         this.lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
             this.scrollY = -scroll
             this.camera.position.y = 21.5 + this.scrollY/this.experience.sizes.height * 40
-            this.cameraControls.target.y = 20 + this.scrollY/this.experience.sizes.height * 40
+            this.experience.camera.target.y = 20 + this.scrollY/this.experience.sizes.height * 40
             this.environment.mainLight.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
-            this.environment.secondary.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
-            this.environment.mainLight.intensity = 20 - (this.environment.mainLight.position.y / -200)*20
+            this.environment.secondary.position.y = 20 + this.scrollY/this.experience.sizes.height * 30
+            this.environment.mainLight.intensity = 20 - (this.environment.mainLight.position.y / -180)*20
 
             if(Monolith.SCREEN_OBJ){
                 Monolith.SCREEN_OBJ.forEach(elt => {

@@ -90,8 +90,10 @@ export default class WaterSurface extends Entity
 
     update()
     {
-        this.#mesh.material.uniforms.uTime.value = this.time.elapsed * 0.001
+        if(this.experience.camera.isObjectInView(this.#mesh)) {
 
+            this.#mesh.material.uniforms.uTime.value = this.time.elapsed * 0.001
+        }
 
     }
 }

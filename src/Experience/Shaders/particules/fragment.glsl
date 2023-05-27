@@ -11,5 +11,5 @@ void main() {
 
     vec3 finalColor = mix(vec3(0.0), vec3(1.0), strength);
 
-    gl_FragColor = vec4(finalColor, normalize(strength) * .5);
+    gl_FragColor = vec4(finalColor, clamp(strength,0.,1.) -0.5);
 }

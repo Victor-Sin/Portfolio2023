@@ -10,6 +10,7 @@ uniform vec3 uMLightColor;
 uniform vec3 uCubeColor;
 uniform float uProgMouse;
 uniform float uDepth;
+uniform float uOpacity;
 
 void main() {
     vec2 uv = vUv;
@@ -39,5 +40,5 @@ void main() {
 
     float strength = 1.0 - (max(abs(vUv.x - 0.5), abs(vUv.y - 0.5)) - 0.1) * (noise * 1.5 + 2.5);
 
-    gl_FragColor = vec4(newColor, strength);
+    gl_FragColor = vec4(newColor, strength * uOpacity);
 }

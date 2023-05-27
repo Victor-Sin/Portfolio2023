@@ -11,7 +11,7 @@ export default class Raylight extends Entity
 
     #mesh;
 
-    constructor()
+    constructor(group)
     {
         super();
         // Debug
@@ -27,7 +27,7 @@ export default class Raylight extends Entity
         this.setMesh()
         Raylight.INDEX++;
 
-        this.scene.add(this.#mesh);
+        group.add(this.#mesh);
     }
 
     setMesh(){

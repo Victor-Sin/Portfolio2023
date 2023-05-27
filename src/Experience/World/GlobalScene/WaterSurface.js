@@ -6,9 +6,9 @@ import waterVertex from '../../Shaders/waterSurface/vertex.glsl'
 export default class WaterSurface extends Entity
 {
 
-    #mesh;
+    mesh;
 
-    constructor()
+    constructor(group)
     {
         super();
         // Debug
@@ -25,7 +25,7 @@ export default class WaterSurface extends Entity
 
         this.setMesh()
 
-        this.scene.add(this.#mesh);
+        group.add(this.mesh);
     }
 
     setMesh(){
@@ -45,31 +45,31 @@ export default class WaterSurface extends Entity
                 uDepthFactor: {value: 1.65}
             }
         })
-        this.#mesh = new THREE.Mesh(geometry,material)
-        this.#mesh.position.set(0,40,-10)
-        this.#mesh.rotation.x = Math.PI/2
+        this.mesh = new THREE.Mesh(geometry,material)
+        this.mesh.position.set(0,40,-10)
+        this.mesh.rotation.x = Math.PI/2
 
         if(this.debug.active){
             this.debugFolder
-                .add(this.#mesh.material.uniforms.uAmplitude, 'value')
+                .add(this.mesh.material.uniforms.uAmplitude, 'value')
                 .name('uAmplitude')
                 .min(0)
                 .max(10)
                 .step(0.001);
             this.debugFolder
-                .add(this.#mesh.material.uniforms.uFrequency, 'value')
+                .add(this.mesh.material.uniforms.uFrequency, 'value')
                 .name('uFrequency')
                 .min(0)
                 .max(10)
                 .step(0.001)
             this.debugFolder
-                .add(this.#mesh.material.uniforms.uSpeed, 'value')
+                .add(this.mesh.material.uniforms.uSpeed, 'value')
                 .name('uSpeed')
                 .min(0)
                 .max(10)
                 .step(0.001)
             this.debugFolder
-                .add(this.#mesh.material.uniforms.uDepthFactor, 'value')
+                .add(this.mesh.material.uniforms.uDepthFactor, 'value')
                 .name('uDepthFactor')
                 .min(0)
                 .max(10)
@@ -77,12 +77,12 @@ export default class WaterSurface extends Entity
 
             this.debugFolder.addColor(this.parameters,'topColor')
                 .onChange(() => {
-                    this.#mesh.material.uniforms.uTopColor.value.set(this.parameters.topColor)
+                    this.mesh.material.uniforms.uTopColor.value.set(this.parameters.topColor)
                 })
 
             this.debugFolder.addColor(this.parameters,'bottomColor')
                 .onChange(() => {
-                    this.#mesh.material.uniforms.uBottomColor.value.set(this.parameters.bottomColor)
+                    this.mesh.material.uniforms.uBottomColor.value.set(this.parameters.bottomColor)
                 })
         }
 
@@ -90,9 +90,9 @@ export default class WaterSurface extends Entity
 
     update()
     {
-        if(this.experience.camera.isObjectInView(this.#mesh)) {
+        if(this.experience.camera.isObjectInView(this.mesh)) {
 
-            this.#mesh.material.uniforms.uTime.value = this.time.elapsed * 0.001
+            this.mesh.material.uniforms.uTime.value = this.time.elapsed * 0.001
         }
 
     }

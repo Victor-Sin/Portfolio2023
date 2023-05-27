@@ -8,14 +8,14 @@ export default class Foglight extends Entity
 
     #mesh;
 
-    constructor()
+    constructor(group)
     {
         super();
         // Debug
 
         this.setMesh()
 
-        this.scene.add(this.#mesh);
+        group.add(this.#mesh);
     }
 
     setMesh(){

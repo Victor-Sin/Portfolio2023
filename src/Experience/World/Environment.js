@@ -29,7 +29,7 @@ export default class Environment
 
     setSunLight()
     {
-        this.sunLight = new THREE.DirectionalLight('#80aed0', 4)
+        this.sunLight = new THREE.DirectionalLight('#80aed0', 0)
         this.sunLight.castShadow = true
         this.sunLight.intensity = .5
         this.sunLight.shadow.camera.far = 15
@@ -51,22 +51,22 @@ export default class Environment
             this.debugFolder
                 .add(this.sunLight.position, 'x')
                 .name('sunLightX')
-                .min(- 5)
-                .max(5)
+                .min(- 10)
+                .max(10)
                 .step(0.001)
             
             this.debugFolder
                 .add(this.sunLight.position, 'y')
                 .name('sunLightY')
-                .min(- 5)
-                .max(5)
+                .min(- 10)
+                .max(10)
                 .step(0.001)
             
             this.debugFolder
                 .add(this.sunLight.position, 'z')
                 .name('sunLightZ')
-                .min(- 5)
-                .max(5)
+                .min(- 10)
+                .max(10)
                 .step(0.001)
 
             this.debugFolder.addColor(this.parameters,'colorDir')

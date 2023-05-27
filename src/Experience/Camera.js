@@ -10,19 +10,61 @@ export default class Camera
         this.experience = new Experience()
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
-        this.target = new THREE.Vector3(0, 20, 0);
+        this.canvas = this.experience.canvas
+        this.debug = this.experience.debug
+
+
+        if(this.debug.active)
+        {
+            this.debugFolder = this.debug.ui.addFolder('camera')
+
+        }
+
 
         this.setInstance()
+        this.setControls()
     }
 
     setInstance()
     {
         this.instance = new THREE.PerspectiveCamera(60, this.sizes.width / this.sizes.height, 0.1, 100)
         this.instance.position.set(0, 21.5, 15)
-        this.instance.lookAt(this.target)
+
         this.scene.add(this.instance)
 
+
+        if(this.debug.active)
+        {
+            this.debugFolder
+                .add(this.instance.position, 'z')
+                .name('zCam')
+                .min(-100)
+                .max(100)
+                .step(0.001)
+        }
+
+
     }
+
+    setControls()
+    {
+        this.controls = new OrbitControls(this.instance, this.canvas)
+        this.controls.enableRotate = false;
+        this.controls.enableZoom = false;
+
+        this.controls.target.y = 20
+        if(this.debug.active)
+        {
+            this.debugFolder
+                .add(this.controls.target, 'z')
+                .name('zCam')
+                .min(-100)
+                .max(100)
+                .step(0.001)
+        }
+
+    }
+
     resize()
     {
         this.instance.aspect = this.sizes.width / this.sizes.height
@@ -46,8 +88,6 @@ export default class Camera
 
     update()
     {
-        this.instance.lookAt(this.target)
-
-        // this.controls.update()
+        this.controls.update()
     }
 }

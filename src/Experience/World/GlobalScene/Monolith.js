@@ -13,7 +13,7 @@ export default class Monolith extends Entity
     #screen;
     name;
 
-    constructor(nameFolder,index = 0)
+    constructor(nameFolder,index = 0,group = null)
     {
         super();
 
@@ -54,8 +54,12 @@ export default class Monolith extends Entity
 
         // const axesHelper = new THREE.AxesHelper( 5 );
         // this.monolith.add( axesHelper )
-
-        this.scene.add(this.monolith);
+        if(group){
+            group.add(this.monolith);
+        }
+        else{
+            this.scene.add(this.monolith);
+        }
         this.sizes.addNewEvent(this.onResize.bind(this))
 
     }
@@ -82,6 +86,8 @@ export default class Monolith extends Entity
         this.#block = new THREE.Mesh( geometry, material );
 
         if(this.nameFolder == "heroBanner"){
+            // this.#block.visible = false;
+
             this.#block.geometry.computeBoundingBox()
             const boundingBoxMax = this.#block.geometry.boundingBox.max
             this.#block.geometry.translate(
@@ -167,7 +173,8 @@ export default class Monolith extends Entity
                 uLightPos: {value: this.environment.secondary.position},
                 uCubeColor: {value:  this.#block.material.color},
                 uProgMouse: {value: 20},
-                uDepth: {value:  this.dataMonolithInfos.position[1]/-180}
+                uDepth: {value:  this.dataMonolithInfos.position[1]/-180},
+                uOpacity : {value:  1}
             }
         })
         this.#screen = new THREE.Mesh(geometry,material)
@@ -187,6 +194,16 @@ export default class Monolith extends Entity
         this.mouse.addObjectsList(this.#screen);
         this.mouse.addNewEvent(this.initMousePosition.bind(this))
 
+    }
+
+    modifyColor(){
+        let depth = new THREE.Vector3();
+        this.#block.getWorldPosition(depth);
+
+        this.#screen.material.uniforms.uDepth.value = depth.y/-180;
+        const depthColor = this.#block.material.color.lerp(new THREE.Color("#101826"),depth.y/-180)
+        this.#screen.material.uniforms.uCubeColor.value = depthColor;
+        this.#block.material.color = depthColor
     }
 
     initMousePosition(){

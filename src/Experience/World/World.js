@@ -5,22 +5,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from '../../data.json'
 import Monolith from "./GlobalScene/Monolith";
 import * as THREE from "three";
-import Lenis from "@studio-freight/lenis";
 import Particules from "./GlobalScene/Particules";
 import Raylight from "./GlobalScene/Raylight";
 import WaterSurface from "./GlobalScene/WaterSurface";
 import Foglight from "./GlobalScene/Foglight";
+import PageHandler from "../PageHandler";
 
 export default class World
 {
-    scrollY = 0;
     constructor()
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.camera = this.experience.camera.instance
-        this.cameraControls = this.experience.camera.controls
 
         if(this.experience.debug.active){
             this.monolithsFolder = this.experience.debug.ui.addFolder("monoliths");
@@ -32,11 +30,16 @@ export default class World
         this.monoliths = [];
         this.raylights = [];
         this.projects = [];
+        this.projectImages = new THREE.Group();
+
+        this.fogColor = new THREE.Color('#42566c');
+        this.finalFogColor = new THREE.Color('#1c2633');
 
 
-        const fog = new THREE.Fog('#1E2C3A', 0, 120)
+        const fog = new THREE.Fog(this.fogColor, 0, 100)
         // const fog = new THREE.FogExp2 ('#203642', 0.5)
         this.scene.fog = fog
+        this.surfaceElts = new THREE.Group();
 
         gsap.registerPlugin(ScrollTrigger);
 
@@ -44,153 +47,32 @@ export default class World
         this.resources.on('ready', () =>
         {
             this.environment = new Environment()
-            this.fogLight = new Foglight();
-            this.water = new WaterSurface()
+            this.fogLight = new Foglight(this.surfaceElts);
+            this.water = new WaterSurface(this.surfaceElts)
             // Setup
             data.raylights.forEach(() => {
-                this.raylights.push(new Raylight())
+                this.raylights.push(new Raylight(this.surfaceElts))
             })
-            // data.monoliths.heroBanner.forEach(() => {
-            //     this.monoliths.push(new Monolith("heroBanner"));
-            // })
+            data.monoliths.heroBanner.forEach(() => {
+                this.monoliths.push(new Monolith("heroBanner",0,this.projectImages));
+            })
             data.monoliths.projects.forEach((e,i) => {
                 this.projects.push(new Monolith("projects",i));
             })
             this.particules = new Particules();
-            this.initScroll()
+            this.pageHandler = new PageHandler();
+            this.scene.add(this.surfaceElts)
+            this.scene.add(this.projectImages)
+            this.projectImages.position.z = -135;
+            this.projectImages.position.y = this.experience.sizes.format == "mobile" ? -5 : 0;
         })
     }
 
-    initScroll(){
-
-        this.lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => 1 - Math.pow(1 - t, 3), // https://www.desmos.com/calculator/brs54l4xou
-            infinite: false,
-        })
-        this.lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
-            this.scrollY = -scroll
-            this.camera.position.y = 21.5 + this.scrollY/this.experience.sizes.height * 40
-            this.experience.camera.target.y = 20 + this.scrollY/this.experience.sizes.height * 40
-            this.environment.mainLight.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
-            this.environment.secondary.position.y = 20 + this.scrollY/this.experience.sizes.height * 30
-            this.environment.mainLight.intensity = 20 - (this.environment.mainLight.position.y / -180)*20
-
-            if(Monolith.SCREEN_OBJ){
-                Monolith.SCREEN_OBJ.forEach(elt => {
-                    elt.initMousePosition()
-                })
-            }
-        })
-
-        const projects = gsap.utils.toArray('.project');
-        const sectionsTitle = gsap.utils.toArray('.sectionTitle');
-
-
-        projects.forEach(project => {
-            const tl = gsap.timeline();
-            const projTitle = project.querySelector(".projectTitle")
-            const elts = project.querySelectorAll('.partTitle')
-            const type = project.querySelector('.typeProject')
-            const date = project.querySelectorAll('.date')
-            const sub = project.querySelector('.sub .partTitle');
-            const button = project.querySelector('.more');
-            function enterAnim(tl){
-                tl.set(elts,{
-                    yPercent:120,
-                }).set(type,{
-                    yPercent:120,
-                }).set(date,{
-                    yPercent:120,
-                })
-                    .to(elts[0],{
-                        yPercent:-120,
-                        duration:0.5
-                    }) .to(type,{
-                        yPercent:-115,
-                        duration:0.5
-                    },"<")
-                    .to(sub ? sub : elts[1],{
-                        yPercent:-120,
-                        duration:0.5
-                    },"<0.125")
-                    .to(date,{
-                        yPercent:-115,
-                        duration:0.5
-                    },"<")
-                    .to(button,{
-                        opacity: 1,
-                        duration: 0.25
-                    },"<")
-            }
-
-            function leaveAnim(tl){
-                tl
-                    .to(elts[0],{
-                        yPercent:-240,
-                        duration:0.25
-                    })
-                    .to(type,{
-                        yPercent:-240,
-                        duration:0.25
-                    },"<")
-                    .to(sub ? sub : elts[1],{
-                        yPercent:-240,
-                        duration:0.25
-                    },"<0.125")
-                    .to(date,{
-                        yPercent:-240,
-                        duration:0.25
-                    },"<")
-                    .to(button,{
-                        opacity: 0,
-                        duration: 0.1
-                    },"<")
-            }
-
-
-            gsap.to(project,{
-                scrollTrigger: {
-                    trigger: projTitle,
-                    // markers: true,
-                    start: "120% 90%", // when the top of the trigger hits the top of the viewport
-                    end: "15% 30%", // end after scrolling 500px beyond the start
-                    onEnter: (self) => {
-                        enterAnim(tl)
-                    },
-                    onLeave: (self) => {
-                       leaveAnim(tl)
-                    },
-                    onEnterBack: (self) => {
-                        enterAnim(tl)
-
-                    },
-                    onLeaveBack: (self) => {
-                        leaveAnim(tl)
-
-                    }
-                }
-            })
-        });
-        sectionsTitle.forEach(sectionTitle => {
-            gsap.to(sectionTitle,{
-                scrollTrigger: {
-                    trigger: sectionTitle,
-                    // markers: true,
-                    start: "bottom 90%", // when the top of the trigger hits the top of the viewport
-                    end: "top 30%", // end after scrolling 500px beyond the start
-                    onEnter: (self) => {
-                        sectionTitle.classList.add('active');
-                    },
-                }
-            })
-        });
-    }
 
     update()
     {
-        if(this.lenis){
-            this.lenis.raf(this.experience.time.current)
+        if(this.pageHandler){
+            this.pageHandler.update();
         }
         if(this.particules){
             this.particules.update()

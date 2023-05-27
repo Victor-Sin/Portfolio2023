@@ -9,22 +9,29 @@ export default class Environment
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.debug = this.experience.debug
+        this.parameters = {
+            colorDir: "#80aed0",
+            colorMain: "#8dbbd3",
+            colorSecondary: "#569dd1"
+        }
         
         // Debug
         if(this.debug.active)
         {
             this.debugFolder = this.debug.ui.addFolder('environment')
+
         }
 
         this.setSunLight()
+        this.setPointLight()
         this.setEnvironmentMap()
     }
 
     setSunLight()
     {
-        this.sunLight = new THREE.DirectionalLight('#87558a', 4)
+        this.sunLight = new THREE.DirectionalLight('#80aed0', 0)
         this.sunLight.castShadow = true
-        this.sunLight.intensity = 1
+        this.sunLight.intensity = .5
         this.sunLight.shadow.camera.far = 15
         this.sunLight.shadow.mapSize.set(1024, 1024)
         this.sunLight.shadow.normalBias = 0.05
@@ -44,30 +51,69 @@ export default class Environment
             this.debugFolder
                 .add(this.sunLight.position, 'x')
                 .name('sunLightX')
-                .min(- 5)
-                .max(5)
+                .min(- 10)
+                .max(10)
                 .step(0.001)
             
             this.debugFolder
                 .add(this.sunLight.position, 'y')
                 .name('sunLightY')
-                .min(- 5)
-                .max(5)
+                .min(- 10)
+                .max(10)
                 .step(0.001)
             
             this.debugFolder
                 .add(this.sunLight.position, 'z')
                 .name('sunLightZ')
-                .min(- 5)
-                .max(5)
+                .min(- 10)
+                .max(10)
                 .step(0.001)
+
+            this.debugFolder.addColor(this.parameters,'colorDir')
+                .onChange(() => {
+                    this.sunLight.color.set(this.parameters.colorDir)
+                })
         }
+    }
+
+    setPointLight(){
+        this.mainLight = new THREE.PointLight( "#37bdcc", 30, 50, 2 );
+        this.mainLight.position.set( -7.5, 20, -15.300 );
+
+        this.secondary = new THREE.PointLight( "#569dd1", 150.0, 50, 2 );
+        this.secondary.position.set( 17.5, 20, 5.300 );
+        // Debug
+        if(this.debug.active)
+        {
+            this.debugFolder
+                .add(this.mainLight, 'intensity')
+                .name('mainLightIntensity')
+                .min(0)
+                .max(500)
+                .step(0.001);
+            this.debugFolder.addColor(this.parameters,'colorMain')
+                .onChange(() => {
+                    this.mainLight.color.set(this.parameters.colorMain)
+                })
+            this.debugFolder
+                .add(this.secondary, 'intensity')
+                .name('secondaryLightIntensity')
+                .min(0)
+                .max(500)
+                .step(0.001);
+            this.debugFolder.addColor(this.parameters,'colorSecondary')
+                .onChange(() => {
+                    this.secondary.color.set(this.parameters.colorSecondary)
+                })
+        }
+        this.scene.add( this.mainLight );
+        this.scene.add( this.secondary );
     }
 
     setEnvironmentMap()
     {
         this.environmentMap = {}
-        this.environmentMap.intensity = 2
+        this.environmentMap.intensity = 1.25
         this.environmentMap.texture = this.resources.items.environmentMapTexture
         this.environmentMap.texture.encoding = THREE.sRGBEncoding
         

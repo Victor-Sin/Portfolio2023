@@ -3,146 +3,349 @@
     "heroBanner": [
       {
         "name" : "Photo_1",
-        "position": [-6,-3,-9],
-        "size": [10,23,10],
-        "rotation": 0,
-        "source": "none"
+        "format": {
+          "mobile": {
+            "position": [0,5.25,-16],
+            "rotation": 0
+          },
+          "tablet": {
+            "position": [-4.968,5.25,-8],
+            "rotation": 0.391
+          },
+          "desktop": {
+            "position": [-9.167,5.25,-4],
+            "rotation": 0.128
+          }
+        },
+        "size": [16,9,4.5],
+        "source": "test"
       },
       {
-        "name" : "Photo_2",
-        "position": [11,-1,-32],
-        "size": [10,18.5,10],
-        "rotation": 0.215,
-        "source": "none"
+        "name" : "Photo_1",
+        "format": {
+
+          "mobile": {
+            "position": [4,-18.5,-8],
+            "rotation": 5.963
+          },
+          "tablet": {
+            "position": [7,14,0],
+            "rotation": 5.668
+          },
+          "desktop": {
+            "position": [7.628,14,0],
+            "rotation": 5.668
+          }
+        },
+        "size": [4,3,3.5],
+        "source": "test"
       },
       {
-        "name" : "Photo_3",
-        "position": [15,-4,-13],
-        "size": [10,26.5,10],
-        "rotation": 5.676,
-        "source": "none"
+        "name" : "Photo_1",
+        "format": {
+          "mobile": {
+            "position": [-5,-30,-20],
+            "rotation": 0.25
+          },
+          "tablet": {
+            "position": [13,-9.15,-22],
+            "rotation": 5.756
+          },
+          "desktop": {
+            "position": [12,-9.15,-17.55],
+            "rotation": 5.98
+          }
+        },
+        "size": [9,16,9],
+        "source": "test"
       },
       {
-        "name" : "Photo_4",
-        "position": [-6.85,-7,-38.15],
-        "size": [15,29.5,15],
-        "rotation": 4.35,
-        "source": "none"
+        "name" : "Photo_1",
+        "format": {
+          "mobile": {
+            "position": [1,-8,-20],
+            "rotation": 0.303
+          },
+          "tablet": {
+            "position": [-7.5,-13.366,-17.565],
+            "rotation": 0.303
+          },
+          "desktop": {
+            "position": [-7.5,-13.366,-9.167],
+            "rotation": 0.303
+          }
+        },
+        "size": [16,9,4.5],
+        "source": "test"
       },
       {
-        "name" : "MonoL_1",
-        "position": [-24,-2,-20.5],
-        "size": [10,16,10],
-        "rotation": 5.492,
-        "source": "none"
-      },
-      {
-        "name" : "MonoL_2",
-        "position": [-7.5,-1,-0.15],
-        "size": [5,14.5,5],
-        "rotation": 1.25,
-        "source": "none"
-      },
-      {
-        "name" : "MonoM_1",
-        "position": [7.25,17.5,-19],
-        "size": [1,2,1],
-        "rotation": 2.678,
-        "source": "none"
-      },
-      {
-        "name" : "MonoM_2",
-        "position": [14,20,-40.25],
-        "size": [3,5,3],
-        "rotation": 3.381,
-        "source": "none"
-      },
-      {
-        "name" : "MonoM_3",
-        "position": [1.25,13.5,1.525],
-        "size": [1.75,2.5,1.75],
-        "rotation": 4.788,
-        "source": "none"
-      },
-      {
-        "name" : "MonoR_2",
-        "position": [9.5,0,1.525],
-        "size": [4,15.5,4],
-        "rotation": 1,
-        "source": "none"
+        "name" : "Photo_1",
+        "format": {
+          "mobile": {
+            "position": [8,-35.5,-26],
+            "rotation": 5.963
+          },
+          "tablet": {
+            "position": [12,-25,-26],
+            "rotation": 6.107
+          },
+          "desktop": {
+            "position": [28.6,-17.5,-26],
+            "rotation": 5.492
+          }
+        },
+        "size": [3,6,3],
+        "source": "test"
       }
     ],
     "projects": [
       {
-        "name" : "FalloutBNR",
-        "position": [0,-60,-11],
-        "size": [15,16,15],
-        "rotation": 0.4,
-        "source": "none"
+        "name" : "ADeuxMains",
+        "format": {
+          "mobile": {
+            "position": [-12.773,20.5,-35],
+            "rotation": 0.7
+          },
+          "tablet": {
+            "position": [-15.366,15.5,-30],
+            "rotation": 0.516
+          },
+          "desktop": {
+            "position": [-20.773,15.5,-16],
+            "rotation": 0.516
+          }
+        },
+        "size": [13,18,13],
+        "source": "test"
       },
       {
-        "name" : "FalloutBNR_bg1",
-        "position": [-35,-72.3,-35.5],
+        "name" : "ADeuxMainsBis",
+        "format": {
+          "mobile": {
+            "position": [5.85,12,-10.28],
+            "rotation": 5.8
+          },
+          "tablet": {
+            "position": [10,12,-12],
+            "rotation": 5.474
+          },
+          "desktop": {
+            "position": [17.85,12,-6.28],
+            "rotation": 5.474
+          }
+        },
+
+        "size": [5,7.5,5],
+        "source": "test"
+      },
+      {
+        "name" : "ADeuxMains_bg1",
+        "position": [22.7,25,-11],
         "size": [2,5,2],
         "rotation": 2.542,
         "source": "none"
       },
       {
-        "name" : "FalloutBNR_bg2",
-        "position": [20,-47.75,-26],
+        "name" : "ADeuxMains_bg2",
+        "position": [15.5,32.25,-20],
         "size": [3,5,3],
         "rotation": 0.743,
         "source": "none"
       },
       {
-        "name" : "FalloutBNR_bg3",
-        "position": [20,-84.5,-20],
-        "size": [3,7.5,3],
+        "name" : "ADeuxMains_bg3",
+        "position": [-6.8,-3.5,-25.5],
+        "size": [3,5,3],
         "rotation": 2.5,
         "source": "none"
       },
       {
         "name" : "FireflyBender",
-        "position": [0,-100,-9],
-        "size": [12.5,17.5,12.5],
-        "rotation": 6,
-        "source": "none"
+        "format": {
+          "mobile": {
+            "position": [11,-25,-35.5],
+            "rotation": 5.874
+          },
+          "tablet": {
+            "position": [17,-22,-30.5],
+            "rotation": 5.474
+          },
+          "desktop": {
+            "position": [17,-22,-12.5],
+            "rotation": 5.474
+          }
+        },
+        "size": [12.5,20,12.5],
+        "source": "test"
       },
       {
         "name" : "FireflyBender_bg1",
-        "position": [32.35,-122,-30.5],
         "size": [2,5,2],
-        "rotation": 3.754,
+
+        "format": {
+          "mobile": {
+            "position": [5.543,-42,-25.5],
+            "rotation": 3.754
+          },
+          "tablet": {
+            "position": [13.043,-42,-25.5],
+            "rotation": 3.754
+          },
+          "desktop": {
+            "position": [13.043,-42,-25.5],
+            "rotation": 3.754
+          }
+        },
         "source": "none"
       },
       {
         "name" : "FireflyBender_bg2",
-        "position": [-11,-102,-6.25],
         "size": [2,3,2],
-        "rotation": 5.373,
+        "format": {
+          "mobile": {
+            "position": [-5,-30,-13.25],
+            "rotation": 5.373
+          },
+          "tablet": {
+            "position": [-11,-22,-17.25],
+            "rotation": 5.373
+          },
+          "desktop": {
+            "position": [-11,-22,-6.25],
+            "rotation": 5.373
+          }
+        },
         "source": "none"
       },
       {
         "name" : "SerialKillers",
-        "position": [0,-140,-12],
-        "size": [14,18,14],
-        "rotation": 0,
-        "source": "none"
+        "format": {
+          "mobile": {
+            "position": [-13.5,-60,-35],
+            "rotation": 0.85
+          },
+          "tablet": {
+            "position": [-15.95,-61,-25],
+            "rotation": 0.567
+          },
+          "desktop": {
+            "position": [-15.95,-61,-11],
+            "rotation": 0.921
+          }
+        },
+        "size": [14,20,14],
+        "source": "test"
+      },
+      {
+        "name" : "SerialKillersBis",
+        "position": [22,-66,-28],
+        "rotation": 5.675,
+        "format": {
+          "mobile": {
+            "position": [10,-72,-25],
+            "rotation": 5.675
+          },
+          "tablet": {
+            "position": [18,-66,-28],
+            "rotation": 5.675
+          },
+          "desktop": {
+            "position": [22,-66,-28],
+            "rotation": 5.675
+          }
+        },
+        "size": [7,10,7],
+        "source": "test"
       },
       {
         "name" : "SerialKillers_bg1",
-        "position": [-25.5,-155,-16.75],
         "size": [5,7.5,5],
-        "rotation": 3.955,
+        "format": {
+          "mobile": {
+            "position": [-10,-90,-45],
+            "rotation": 3.955
+          },
+          "tablet": {
+            "position": [51,-90,-45],
+            "rotation": 3.955
+          },
+          "desktop": {
+            "position": [51,-90,-45],
+            "rotation": 3.955
+          }
+        },
         "source": "none"
       },
       {
-        "name" : "ADeuxMains",
-        "position": [0,-180,-8],
+        "name" : "FalloutBNR",
+        "format": {
+          "mobile": {
+            "position": [11,-107.5,-35],
+            "rotation": 5.575
+          },
+          "tablet": {
+            "position": [13,-99.5,-25],
+            "rotation": 5.575
+          },
+          "desktop": {
+            "position": [13,-99.5,-12],
+            "rotation": 5.575
+          }
+        },
         "size": [10,15,10],
-        "rotation": 6.019,
+        "source": "test"
+      },
+      {
+        "name" : "FalloutBNR_bg1",
+        "position": [-15,-105,-6.25],
+        "size": [2,4,2],
+        "rotation": 2.944,
+        "source": "none"
+      },
+      {
+        "name" : "FalloutBNR_bg2",
+        "position": [-16,-85.5,-25],
+        "size": [4,7.5,4],
+        "rotation": 3.15,
         "source": "none"
       }
     ]
-  }
+  },
+  "raylights": [
+    {
+      "width": 3,
+      "height": 15,
+      "x": 20,
+      "y": 27.5,
+      "z": -5
+    },
+    {
+      "width": 1,
+      "height": 15,
+      "x": 20,
+      "y": 27.5,
+      "z": -3.5
+    },
+    {
+      "width": 1.5,
+      "height": 20,
+      "x": 23,
+      "y": 27.5,
+      "z": -5.5
+    },
+    {
+      "width": 5,
+      "height": 25,
+      "x": 18,
+      "y": 27.5,
+      "z": -4
+    },
+    {
+      "width": 7,
+      "height": 25,
+      "x": 15,
+      "y": 27.5,
+      "z": -4.5
+    }
+  ]
 }

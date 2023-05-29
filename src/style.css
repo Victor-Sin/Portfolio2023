@@ -23,6 +23,17 @@ body
     font-family: Raleway;
 }
 
+/* Cacher la barre de défilement pour Chrome, Safari et Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cacher la barre de défilement pour IE, Edge et Firefox */
+html {
+    scrollbar-width: none; /* Pour Firefox */
+    -ms-overflow-style: none;  /* Pour Internet Explorer et Edge */
+}
+
 .webgl
 {
     position: fixed;
@@ -225,25 +236,27 @@ h1{
     width: 100vw;
     overflow-y: scroll;
     pointer-events: none;
-}
+    scrollbar-width: none; /* Pour Firefox */
+    -ms-overflow-style: none;  /* Pour Internet Explorer et Edge */}
 
 .homepage{
     opacity : 1;
 }
 
 .projectPage{
+    position: relative;
     opacity: 0;
-    height: 250vh;
+    height: 300vh;
 }
 
-.projectPage img{
-    opacity: 0;
-}
+
 
 .informations{
-    padding: 12.5% 200px 5%;
+    position: relative;
+    padding: 12.5% 200px 0;
     mix-blend-mode: color-dodge;
     opacity: 26%;
+
 }
 
 .projectPage h1{

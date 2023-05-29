@@ -1,17 +1,20 @@
-import * as THREE from "three";
 import Entity from "./World/GlobalScene/Entity";
 import Lenis from "@studio-freight/lenis";
 import Monolith from "./World/GlobalScene/Monolith";
+import data from "../data.json";
 import gsap,{Circ} from "gsap";
 
 export default class PageHandler extends Entity{
     static instance = null
     onProject = false;
+    scrollY = 0;
+    currentProject = -1;
 
     constructor() {
         super();
         this.camera = this.experience.camera.instance
         this.cameraControls = this.experience.camera.controls
+        this.data = data.projects;
 
         if(PageHandler.instance){
             return PageHandler.instance;
@@ -24,29 +27,31 @@ export default class PageHandler extends Entity{
 
 
     initScroll(){
+        this.scene.fog.color = this.world.fogColor.lerpColors(this.world.fogColor,this.world.finalFogColor,(this.scrollY/this.experience.sizes.height * 40) / -180  )
+        this.positionScrollGlobal = 0;
+
+        if(Monolith.SCREEN_OBJ){
+            Monolith.SCREEN_OBJ.forEach(elt => {
+                elt.initMousePosition()
+            })
+        }
 
         this.mainLenis = new Lenis({
             duration: 1.2,
             easing: (t) => 1 - Math.pow(1 - t, 3), // https://www.desmos.com/calculator/brs54l4xou
             infinite: false,
         })
-        this.mainLenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
+        this.mainLenis.on('scroll', ({ scroll}) => {
             this.scrollY = -scroll
-            this.camera.position.y = 21.5 + this.scrollY/this.experience.sizes.height * 40
-            this.cameraControls.target.y = 20 + this.scrollY/this.experience.sizes.height * 40
-            this.environment.mainLight.position.y = 20 + this.scrollY/this.experience.sizes.height * 40
-            this.environment.secondary.position.y = 20 + this.scrollY/this.experience.sizes.height * 30
-            this.environment.mainLight.intensity = 20 - (this.environment.mainLight.position.y / -180)*20
-            this.world.projectImages.position.y = this.scrollY/this.experience.sizes.height * 40;
-            this.world.projectImages.position.y += this.sizes.format == "mobile" ? -5 : 0;
+            this.positionScrollGlobal = this.scrollY/this.experience.sizes.height * 40;
+            this.camera.position.y = 21.5 +  this.positionScrollGlobal
+            this.cameraControls.target.y = 20 +  this.positionScrollGlobal
+            this.environment.mainLight.position.y = 20 +  this.positionScrollGlobal
+            this.environment.secondary.position.y = 20 +  this.positionScrollGlobal
+            this.environment.mainLight.intensity = Math.max(20 - (this.environment.mainLight.position.y / -180)*40,1)
             this.scene.fog.color = this.world.fogColor.lerpColors(this.world.fogColor,this.world.finalFogColor,(this.scrollY/this.experience.sizes.height * 40) / -180  )
 
 
-            if(Monolith.SCREEN_OBJ){
-                Monolith.SCREEN_OBJ.forEach(elt => {
-                    elt.initMousePosition()
-                })
-            }
         })
 
         const projects = gsap.utils.toArray('.project');
@@ -78,7 +83,8 @@ export default class PageHandler extends Entity{
                 },"<")
                     .to(sub ? sub : elts[1],{
                         yPercent:-120,
-                        duration:0.5
+                        duration:0.5,
+                        delay: 0.1
                     },"<")
                     .to(date,{
                         yPercent:-115,
@@ -121,17 +127,17 @@ export default class PageHandler extends Entity{
                     // markers: true,
                     start: "120% 90%", // when the top of the trigger hits the top of the viewport
                     end: "15% 30%", // end after scrolling 500px beyond the start
-                    onEnter: (self) => {
+                    onEnter: () => {
                         enterAnim(tl)
                     },
-                    onLeave: (self) => {
+                    onLeave: () => {
                         leaveAnim(tl)
                     },
-                    onEnterBack: (self) => {
+                    onEnterBack: () => {
                         enterAnim(tl)
 
                     },
-                    onLeaveBack: (self) => {
+                    onLeaveBack: () => {
                         leaveAnim(tl)
 
                     }
@@ -145,7 +151,7 @@ export default class PageHandler extends Entity{
                     // markers: true,
                     start: "bottom 90%", // when the top of the trigger hits the top of the viewport
                     end: "top 30%", // end after scrolling 500px beyond the start
-                    onEnter: (self) => {
+                    onEnter: () => {
                         sectionTitle.classList.add('active');
                     },
                 }
@@ -155,21 +161,38 @@ export default class PageHandler extends Entity{
     }
 
     initScrollProject(){
+        this.world.projectImages.position.y = this.scrollY/this.experience.sizes.height * 40 +  scroll/this.experience.sizes.height * 17.5 * (this.sizes.format === "mobile" ? 2 : 1);
+        this.world.projectImages.position.y += this.sizes.format === "mobile" ? -5 : -2.5;
         this.projectLenis = new Lenis({
             duration: 1.2,
             easing: (t) => 1 - Math.pow(1 - t, 3), // https://www.desmos.com/calculator/brs54l4xou
-            infinite: false,
             wrapper: document.querySelector(".projectWrapper"),
             content: document.querySelector(".projectPage")
         })
-        this.projectLenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
-            // console.log(this.world.water.mesh.position)
-            this.world.projectImages.position.y = this.scrollY/this.experience.sizes.height * 40 +  scroll/this.experience.sizes.height * 17.5 * (this.sizes.format == "mobile" ? 2 : 1);
-            this.world.projectImages.position.y += this.sizes.format == "mobile" ? -5 : 0;
+        this.projectLenis.on('scroll', ({ scroll}) => {
+            this.world.projectImages.position.y = this.scrollY/this.experience.sizes.height * 40 +  scroll/this.experience.sizes.height * 17.5 * (this.sizes.format === "mobile" ? 2 : 1);
+            this.world.projectImages.position.y += this.sizes.format === "mobile" ? -5 : -2.5;
         })
 
         this.projectLenis.scrollTo(0,{
             immediate: true
+        })
+
+        gsap.timeline({
+            scrollTrigger:{
+                scroller: '.projectWrapper',
+                endTrigger: ".projectWrapper",
+                end: "bottom center",  // l'animation se terminera lorsque le bas de #endElement atteindra le centre de la fenêtre de défilement
+                markers: true,
+                scrub: true,
+            }
+        })
+            .set('.informations',{
+            maskImage: "linear-gradient(to bottom,transparent 0%, black 25%)",
+            scrub: true,
+        })   .to('.informations',{
+            maskImage: "linear-gradient(to bottom,transparent 75%, black 100%)",
+            scrub: true,
         })
     }
 
@@ -178,6 +201,16 @@ export default class PageHandler extends Entity{
         this.tlProj.to(".homepage",{
             opacity:0,
         })
+            .to(this.environment.mainLight.position,{
+                z: -15.300 - 130,
+                duration:1,
+                ease: Circ.easeInOut
+            },"-.25")
+            .to(this.environment.secondary.position,{
+                z: 5.300 - 140,
+                duration:1,
+                ease: Circ.easeInOut
+            },"<")
             .to(this.camera.position,{
                 z: -120,
                 duration:2,
@@ -198,50 +231,117 @@ export default class PageHandler extends Entity{
                 duration:1.5
             },"<1.25");
 
-        document.querySelector(".homepage").addEventListener("click",() => {
+        document.querySelectorAll(".more").forEach((elt,i) => {
+            elt.addEventListener("click",() => {
+                this.currentProject = i;
+                this.toggleProjectAnimation(i);
+                this.setInfos(this.currentProject);
+            })
+        })
+
+        document.querySelector(".projectPage").addEventListener("click",() => {
 
             this.toggleProjectAnimation();
 
         })
     }
 
-    toggleProjectAnimation() {
+    toggleProjectAnimation(index = -1) {
         if (this.onProject) {
             this.tlProj.reverse();
             this.mainLenis.start()
             this.projectLenis.stop();
-            this.projectLenis.scrollTo("start",{
-                immediate: true
-            })
+
             document.querySelector('.projectWrapper').style.pointerEvents = "none";
-            this.changeGroupOpacity(this.world.projectImages,0,.5)
+            this.changeGroupOpacity(this.world.projectImages,0,2)
 
         } else {
             this.tlProj.play();
             this.mainLenis.stop()
             this.projectLenis.start();
+            this.projectLenis.scrollTo(10,{
+                immediate: true
+            })
             document.querySelector('.projectWrapper').style.pointerEvents = "auto";
             this.changeGroupOpacity(this.world.projectImages,1,2)
-            this.world.monoliths.forEach(elt => {
-                elt.modifyColor();
-            })
+            this.world.projectImages.position.y = this.positionScrollGlobal;
+            this.world.projectImages.position.y += this.sizes.format === "mobile" ? -5 : -2.5;
+            setTimeout(() => {
+                this.world.monoliths.forEach(elt => {
+                    elt.modifyColor();
+                })
+            },500)
+
         }
         this.onProject = !this.onProject;
     }
 
+    setInfos(index){
+        if(index >= 0){
+            document.querySelector(".informations h1").innerHTML = this.data[index].title;
+            document.querySelector(".infos").innerHTML = this.data[index].content;
+            document.querySelector(".job p").innerHTML = this.data[index].job;
+            document.querySelector(".stack p").innerHTML = this.data[index].stack;
+            document.querySelector(".status p").innerHTML = this.data[index].status;
+            document.querySelector(".credits p").innerHTML = this.data[index].credits;
+            document.querySelector(".website").style.display =  this.data[index].website == "none" ? "none" : "inline-block";
+            document.querySelector(".website").href =  this.data[index].website ;
+            document.querySelector(".github").style.display =  this.data[index].github == "none" ? "none" : "inline-block";
+            document.querySelector(".github").href =  this.data[index].github ;
+            this.changeGroupImages(this.world.projectImages);
+
+        }
+    }
+
     changeGroupOpacity(group, targetOpacity, duration) {
         // Traverse all children of the group
+        let index = 0;
         group.traverse((object) => {
-            if (object.material) {
-                // If the object has a material and it supports transparency
-                if (object.material.transparent && object.material.uniforms.uOpacity) {
-                    // Use GSAP library to animate the opacity change
+            if (object.material && object.material.transparent ) {
+                if(object.material.uniforms && object.material.uniforms.uOpacity){
+                    const image = this.resources.items[this.data[this.currentProject].photos[index]];
+
                     gsap.to(object.material.uniforms.uOpacity, {
-                        value: targetOpacity,
+                        value: image != undefined ? targetOpacity : 0,
                         duration: duration,
                         ease: Circ.easeInOut,
-                        delay: 1.25
                     });
+
+                    index++;
+
+                }
+                else{
+                    gsap.to(object.material, {
+                        opacity: targetOpacity,
+                        duration: duration + (1 - targetOpacity),
+                        ease: Circ.easeInOut,
+                    });
+                }
+
+            }
+        });
+    }
+
+    changeGroupImages(group) {
+        // Traverse all children of the group
+        let index = 0;
+        group.traverse((object) => {
+            if (object.material) {
+
+                if(object.material.uniforms && object.material.uniforms.uTexture){
+                    const image = this.resources.items[this.data[this.currentProject].photos[index]];
+
+                    if(object.material.uniforms.uOpacity){
+                        if(image == undefined){
+                            object.material.uniforms.uOpacity.value = 0;
+                        }
+                        else{
+                            object.material.uniforms.uOpacity.value = 1;
+                        }
+                    }
+
+                    object.material.uniforms.uTexture.value = image;
+                    index++;
                 }
             }
         });
@@ -249,11 +349,11 @@ export default class PageHandler extends Entity{
 
     update()
     {
-        if(this.mainLenis){
+        if(!this.onProject && this.mainLenis){
             this.mainLenis.raf(this.experience.time.current)
         }
 
-        if(this.projectLenis){
+        if(this.onProject && this.projectLenis){
             this.projectLenis.raf(this.experience.time.current)
         }
     }

@@ -60,11 +60,13 @@ export default class World
                 this.projects.push(new Monolith("projects",i));
             })
             this.particules = new Particules();
+            this.particulesBack = new Particules();
+            this.particulesBack.points.position.z = -130;
             this.pageHandler = new PageHandler();
             this.scene.add(this.surfaceElts)
             this.scene.add(this.projectImages)
             this.projectImages.position.z = -135;
-            this.projectImages.position.y = this.experience.sizes.format == "mobile" ? -5 : 0;
+            this.projectImages.position.y = this.experience.sizes.format === "mobile" ? -5 : -2.5;
         })
     }
 
@@ -77,6 +79,10 @@ export default class World
         if(this.particules){
             this.particules.update()
         }
+        if(this.particulesBack){
+            this.particulesBack.update()
+        }
+
         if(Monolith.SCREEN_OBJ.length > 0){
             Monolith.SCREEN_OBJ.forEach(elt => {
                 elt.update()

@@ -2,7 +2,7 @@
   "monoliths": {
     "heroBanner": [
       {
-        "name" : "Photo_1",
+        "name" : "Desktop_1",
         "format": {
           "mobile": {
             "position": [0,5.25,-16],
@@ -21,7 +21,7 @@
         "source": "test"
       },
       {
-        "name" : "Photo_1",
+        "name" : "Desktop_2",
         "format": {
 
           "mobile": {
@@ -41,26 +41,7 @@
         "source": "test"
       },
       {
-        "name" : "Photo_1",
-        "format": {
-          "mobile": {
-            "position": [-5,-30,-20],
-            "rotation": 0.25
-          },
-          "tablet": {
-            "position": [13,-9.15,-22],
-            "rotation": 5.756
-          },
-          "desktop": {
-            "position": [12,-9.15,-17.55],
-            "rotation": 5.98
-          }
-        },
-        "size": [9,16,9],
-        "source": "test"
-      },
-      {
-        "name" : "Photo_1",
+        "name" : "Desktop_3",
         "format": {
           "mobile": {
             "position": [1,-8,-20],
@@ -79,7 +60,26 @@
         "source": "test"
       },
       {
-        "name" : "Photo_1",
+        "name" : "Mobile_1",
+        "format": {
+          "mobile": {
+            "position": [-5,-30,-20],
+            "rotation": 0.25
+          },
+          "tablet": {
+            "position": [13,-9.15,-22],
+            "rotation": 5.756
+          },
+          "desktop": {
+            "position": [12,-9.15,-17.55],
+            "rotation": 5.98
+          }
+        },
+        "size": [9,16,9],
+        "source": "test"
+      },
+      {
+        "name" : "Mobile_2",
         "format": {
           "mobile": {
             "position": [8,-35.5,-26],
@@ -346,6 +346,98 @@
       "x": 15,
       "y": 27.5,
       "z": -4.5
+    }
+  ],
+  "projects": [
+    {
+      "title": "Sibö",
+      "content": "text test",
+      "job": "Developer <br/> Level Designer <br/> Game Designer",
+      "stack": "Unity",
+      "status": "WIP",
+      "credits" : "Lena ENG<br/>Ibrahima Kaba",
+      "photos": [
+        "test",
+        "test",
+        "test",
+        "none",
+        "none"
+      ],
+      "video": "none",
+      "website" : "none",
+      "github": "none"
+    },
+    {
+      "title": "A Deux mains",
+      "content": "text test",
+      "job": "Front-end Developer  <br/> Webgl Developer",
+      "stack": "Three.js <br> GSAP",
+      "status": "Done",
+      "credits" : "Ibrahima Kaba",
+      "photos": [
+        "test",
+        "test",
+        "test",
+        "test",
+        "test"
+      ],
+      "video": "none",
+      "website" : "none",
+      "github": "none"
+    },
+    {
+      "title": "Firefly Bender",
+      "content": "text test",
+      "job": "Front-end Developer  <br/> Webgl Developer",
+      "stack": "Three.js <br> GSAP",
+      "status": "Done",
+      "credits" : "Ibrahima Kaba",
+      "photos": [
+        "test",
+        "test",
+        "test",
+        "test",
+        "test"
+      ],
+      "video": "none",
+      "website" : "none",
+      "github": "none"
+    },
+    {
+      "title": "Serial Killers",
+      "content": "text test",
+      "job": "Front-end Developer  <br/> Webgl Developer",
+      "stack": "Three.js <br> GSAP",
+      "status": "Done",
+      "credits" : "Ibrahima Kaba",
+      "photos": [
+        "test",
+        "test",
+        "test",
+        "test",
+        "test"
+      ],
+      "video": "none",
+      "website" : "none",
+      "github": "none"
+    },
+    {
+      "title": "Fallout: Brand New Road",
+      "content": "text test",
+      "job": "Front-end Developer  <br/> Webgl Developer",
+      "stack": "Three.js <br> GSAP",
+      "status": "Done",
+      "credits" : "Ibrahima Kaba",
+      "photos": [
+        "test",
+        "test",
+        "test",
+        "test",
+        "test"
+      ],
+      "video": "none",
+      "website" : "none",
+      "github": "none"
     }
   ]
 }

@@ -31,5 +31,5 @@ export default [
         name: 'test',
         type: 'texture',
         path: 'textures/test.png'
-    }
+    },
 ]

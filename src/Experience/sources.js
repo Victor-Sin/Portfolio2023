@@ -32,4 +32,24 @@ export default [
         type: 'texture',
         path: 'textures/test.png'
     },
+    {
+        name: 'sibo_d1',
+        type: 'texture',
+        path: 'textures/sibo/Desktop_1.jpg'
+    },
+    {
+        name: 'sibo_d2',
+        type: 'texture',
+        path: 'textures/sibo/Desktop_2.jpg'
+    },
+    {
+        name: 'sibo_d3',
+        type: 'texture',
+        path: 'textures/sibo/Desktop_3.jpg'
+    },
+    {
+        name: 'sibo_m1',
+        type: 'texture',
+        path: 'textures/sibo/Mobile_1.jpg'
+    },
 ]

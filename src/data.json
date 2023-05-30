@@ -350,6 +350,7 @@
   ],
   "projects": [
     {
+      "color": "",
       "title": "Sibö",
       "content": "text test",
       "job": "Developer <br/> Level Designer <br/> Game Designer",
@@ -357,10 +358,10 @@
       "status": "WIP",
       "credits" : "Lena ENG<br/>Ibrahima Kaba",
       "photos": [
-        "test",
-        "test",
-        "test",
-        "none",
+        "sibo_d1",
+        "sibo_d2",
+        "sibo_d3",
+        "sibo_m1",
         "none"
       ],
       "video": "none",

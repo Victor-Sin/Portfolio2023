@@ -167,7 +167,7 @@ export default class Monolith extends Entity
                 uLightColor: {value: new THREE.Color(this.environment.secondary.color)},
                 uLightPos: {value: this.environment.secondary.position},
                 uCubeColor: {value:  this.#block.material.color},
-                uProgMouse: {value: 20},
+                uProgMouse: {value: this.nameFolder !== "heroBanner" ? 20 : 1},
                 uDepth: {value:  this.dataMonolithInfos.position[1]/-180},
                 uOpacity : {value:  1}
             }
@@ -241,19 +241,18 @@ export default class Monolith extends Entity
         if(this.experience.camera.isObjectInView(this.#block) && this.#screen){
             this.#screen.material.uniforms.uTime.value = this.time.elapsed
             this.#screen.material.uniforms.uLightPos.value = this.environment.secondary.position
-            if(this.mouse.intersection && this.mouse.intersection.object === this.#screen){
-                if(this.#screen.material.uniforms.uProgMouse.value > 1 ){
-                    let tmp = this.#screen.material.uniforms.uProgMouse.value - 0.1;
+            if(this.mouse.intersection && this.mouse.intersection.object == this.#screen){
+                if(this.#screen.material.uniforms.uProgMouse.value > 1 && this.nameFolder !== "heroBanner"){
+                    let tmp = this.#screen.material.uniforms.uProgMouse.value - .5;
                     this.#screen.material.uniforms.uProgMouse.value = Math.max(1,tmp)
                 }
-                else{
-                    if(this.#screen.material.uniforms.uProgMouse.value < 20){
-                        const tmp = this.#screen.material.uniforms.uProgMouse.value + ((this.time.delta*2)/60);
-                        this.#screen.material.uniforms.uProgMouse.value = Math.min(20,tmp)
-                    }
+            }
+            else{
+                if(this.#screen.material.uniforms.uProgMouse.value < 20 && this.nameFolder !== "heroBanner"){
+                    const tmp = this.#screen.material.uniforms.uProgMouse.value + ((this.time.delta*2)/60);
+                    this.#screen.material.uniforms.uProgMouse.value = Math.min(20,tmp)
                 }
             }
-
         }
     }
 }

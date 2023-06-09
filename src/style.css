@@ -434,6 +434,11 @@ h1{
     .video iframe {
         padding: 5% 50px;
     }
+
+    .aboutContent{
+        flex-direction: column;
+        gap:2em;
+    }
 }
 
 @media only screen and (max-width: 580px) {
@@ -458,5 +463,8 @@ h1{
 
     .video iframe {
         padding: 5% 0px;
+    }
+    .presentation{
+        width: auto;
     }
 }

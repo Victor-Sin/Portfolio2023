@@ -384,7 +384,7 @@ h1{
 
 }
 
-.loader{
+.loader,.disableMobile{
     position: fixed;
     top:0;
     left:0;
@@ -394,7 +394,11 @@ h1{
     z-index: 9999;
 }
 
-.progress{
+.disableMobile{
+    display: none;
+}
+
+.progress,.wip{
     font-size: 6rem;
     font-family: Unbounded;
     mix-blend-mode: color-dodge;
@@ -466,5 +470,13 @@ h1{
     }
     .presentation{
         width: auto;
+    }
+
+    .wip{
+        font-size: 3rem;
+    }
+
+    .disableMobile{
+        display: block;
     }
 }

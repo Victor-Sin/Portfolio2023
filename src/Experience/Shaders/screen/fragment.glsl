@@ -35,7 +35,7 @@ void main() {
     vec3 newColor = texture(uTexture, uv).rgb ;
 
 
-    newColor = mix(uCubeColor * uMLightColor * .5, newColor, min(0.75, 1.0 - uDepth* 0.8 ) );
+    newColor = mix(uCubeColor * uMLightColor * .5, newColor, min(0.8, 1.0 - uDepth* 0.5 ) );
     newColor = mix(uLightColor *.5 * diff, newColor, 0.65);
 
     float strength = 1.0 - (max(abs(vUv.x - 0.5), abs(vUv.y - 0.5)) - 0.1) * (noise * 1.5 + 2.5);

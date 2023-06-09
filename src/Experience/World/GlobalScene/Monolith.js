@@ -160,7 +160,7 @@ export default class Monolith extends Entity
             vertexShader: screenVertex,
             fragmentShader: screenFragment,
             uniforms: {
-                uTexture: {value: this.resources.items.test},
+                uTexture: {value: this.resources.items[this.dataMonolith.source]},
                 uCursor : {value: new THREE.Vector2()},
                 uTime: {value: 0},
                 uMLightColor: {value: new THREE.Color(this.environment.sunLight.color)},

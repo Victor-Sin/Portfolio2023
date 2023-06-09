@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size:clamp(10px,50vw,14px);
+    font-size:clamp(10px,3vw,14px);
 }
 
 html{
@@ -72,6 +72,22 @@ header nav{
     color:var(--textColor);
 }
 
+.navButtons{
+    display: flex;
+    gap: 1em;
+}
+
+.navButtons .close{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navButtons button{
+
+    background: none;
+    border: none;
+}
+
 .content{
     position: relative;
     z-index: 1;
@@ -106,7 +122,7 @@ h1{
 }
 
 .partTitle,.eltTitle{
-    font-size: clamp(2rem,10vw,8rem);
+    font-size: clamp(3.5rem,10vw,8rem);
     font-weight: 300;
 
 }
@@ -196,6 +212,7 @@ h1{
     width: 600px;
     font-weight: 300;
     font-size: 16px;
+    padding: 1em 0;
 }
 
 .contact .title{
@@ -255,16 +272,21 @@ h1{
     position: relative;
     padding: 12.5% 200px 0;
     mix-blend-mode: color-dodge;
-    opacity: 26%;
+    opacity: 33%;
 
 }
 
 .projectPage h1{
     text-align: center;
     max-width: 700px;
-    font-size: clamp(3rem,5vw,5rem);
+    font-size: clamp(3.25rem,5vw,5rem);
     margin: 0 auto 1em;
     font-weight: 300;
+}
+
+.projectPage h1 span{
+    font-size:0.5em;
+    display: block;
 }
 
 .projectContent{
@@ -279,7 +301,7 @@ h1{
 
 .infos{
     width: 50%;
-    font-size: clamp(1rem,2.5vw,1.5rem);
+    font-size: clamp(1.25rem,2.5vw,1.5rem);
 }
 
 .subInfos{
@@ -317,12 +339,75 @@ h1{
 
 }
 
-
-@media only screen and (max-width: 1580px){
-    .subInfos{
-        width: 100%;
-    }
+.container{
+    position:relative;
+    width: 100%;
+    overflow: hidden;
 }
+
+.img{
+    display: block;
+ width: 90%;
+    margin: 0 auto;
+}
+
+.homepage > .section{
+    mix-blend-mode: normal;
+    opacity: 45%;
+}
+
+.sectionTitle{
+    font-weight: 400;
+    text-align: left;
+    font-size: clamp(2em,10vw,6em);
+    opacity: 0.3;
+}
+
+.videoPage{
+    height: 175vh;
+}
+
+.video {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 5% 200px;
+
+}
+
+.loader{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background :rgb(46, 70, 82);
+    z-index: 9999;
+}
+
+.progress{
+    font-size: 6rem;
+    font-family: Unbounded;
+    mix-blend-mode: color-dodge;
+    opacity: .5;
+    font-weight: bold;
+    text-align: right;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+
+
 
 
 @media only screen and (max-width: 1180px){
@@ -334,6 +419,8 @@ h1{
         padding: 12.5% 50px 5%;
     }
 
+
+
     .projectContent{
         flex-direction: column;
     }
@@ -343,15 +430,17 @@ h1{
     .subInfos{
         width: 100%;
     }
+
+    .video iframe {
+        padding: 5% 50px;
+    }
 }
 
 @media only screen and (max-width: 580px) {
-    h1.nav-title{
-        display: none;
-    }
+
 
     .informations{
-        padding: 12.5% 15px 5%;
+        padding: 12.5% 0px 5%;
     }
 
     .projectPage{
@@ -361,5 +450,13 @@ h1{
 
     .subInfo h4{
         min-width: 60px;
+    }
+
+    .sub span{
+        font-size: 0.475em;
+    }
+
+    .video iframe {
+        padding: 5% 0px;
     }
 }

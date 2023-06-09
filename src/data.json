@@ -33,11 +33,11 @@
             "rotation": 5.668
           },
           "desktop": {
-            "position": [7.628,14,0],
-            "rotation": 5.668
+            "position": [7.628,12,-2],
+            "rotation": 5.878
           }
         },
-        "size": [4,3,3.5],
+        "size": [8,6,3.5],
         "source": "test"
       },
       {
@@ -52,7 +52,7 @@
             "rotation": 0.303
           },
           "desktop": {
-            "position": [-7.5,-13.366,-9.167],
+            "position": [-7.5,-14.366,-9.167],
             "rotation": 0.303
           }
         },
@@ -71,7 +71,7 @@
             "rotation": 5.756
           },
           "desktop": {
-            "position": [12,-9.15,-17.55],
+            "position": [12,-12.15,-17.55],
             "rotation": 5.98
           }
         },
@@ -90,7 +90,7 @@
             "rotation": 6.107
           },
           "desktop": {
-            "position": [28.6,-17.5,-26],
+            "position": [28.6,-19.5,-26],
             "rotation": 5.492
           }
         },
@@ -100,7 +100,7 @@
     ],
     "projects": [
       {
-        "name" : "ADeuxMains",
+        "name" : "Sibo",
         "format": {
           "mobile": {
             "position": [-12.773,20.5,-35],
@@ -116,10 +116,10 @@
           }
         },
         "size": [13,18,13],
-        "source": "test"
+        "source": "sibo_p1"
       },
       {
-        "name" : "ADeuxMainsBis",
+        "name" : "SiboBis",
         "format": {
           "mobile": {
             "position": [5.85,12,-10.28],
@@ -136,31 +136,31 @@
         },
 
         "size": [5,7.5,5],
-        "source": "test"
+        "source": "sibo_p2"
       },
       {
-        "name" : "ADeuxMains_bg1",
+        "name" : "Sibo_bg1",
         "position": [22.7,25,-11],
         "size": [2,5,2],
         "rotation": 2.542,
         "source": "none"
       },
       {
-        "name" : "ADeuxMains_bg2",
+        "name" : "Sibo_bg2",
         "position": [15.5,32.25,-20],
         "size": [3,5,3],
         "rotation": 0.743,
         "source": "none"
       },
       {
-        "name" : "ADeuxMains_bg3",
+        "name" : "Sibo_bg3",
         "position": [-6.8,-3.5,-25.5],
         "size": [3,5,3],
         "rotation": 2.5,
         "source": "none"
       },
       {
-        "name" : "FireflyBender",
+        "name" : "ADeuxMains",
         "format": {
           "mobile": {
             "position": [11,-25,-35.5],
@@ -176,10 +176,10 @@
           }
         },
         "size": [12.5,20,12.5],
-        "source": "test"
+        "source": "adm_p1"
       },
       {
-        "name" : "FireflyBender_bg1",
+        "name" : "ADeuxMains_bg1",
         "size": [2,5,2],
 
         "format": {
@@ -199,7 +199,7 @@
         "source": "none"
       },
       {
-        "name" : "FireflyBender_bg2",
+        "name" : "ADeuxMains_bg2",
         "size": [2,3,2],
         "format": {
           "mobile": {
@@ -218,23 +218,100 @@
         "source": "none"
       },
       {
+        "name" : "FireflyBender",
+        "format": {
+          "mobile": {
+            "position": [-13,-62,-35.5],
+            "rotation": 0.614
+          },
+          "tablet": {
+            "position": [-12,-62,-27.5],
+            "rotation": 0.314
+          },
+          "desktop": {
+            "position": [-11.11,-62,-15.95],
+            "rotation": 0.314
+          }
+        },
+        "size": [12.5,20,12.5],
+        "source": "adm_p1"
+      },
+      {
+        "name" : "FireflyBender_bg1",
+        "size": [3,6,3],
+
+        "format": {
+          "mobile": {
+            "position": [9.212,-83.5,-35.25],
+            "rotation": 4.766
+          },
+          "tablet": {
+            "position": [9.212,-83.5,-35.25],
+            "rotation": 4.766
+          },
+          "desktop": {
+            "position": [9.212,-83.5,-35.25],
+            "rotation": 4.766
+          }
+        },
+        "source": "none"
+      },
+      {
+        "name" : "FireflyBender_bg2",
+        "size": [3,5,3],
+        "format": {
+          "mobile": {
+            "position": [13,-64.25,-15.25],
+            "rotation": 5.373
+          },
+          "tablet": {
+            "position": [13,-64.25,-15.25],
+            "rotation": 5.373
+          },
+          "desktop": {
+            "position": [13,-64.25,-6.25],
+            "rotation": 5.373
+          }
+        },
+        "source": "none"
+      },
+      {
+        "name" : "FireflyBender_bg3",
+        "size": [5,8,5],
+        "format": {
+          "mobile": {
+            "position": [37.2,-54.59,-30.45],
+            "rotation": 3.45
+          },
+          "tablet": {
+            "position": [37.2,-54.59,-30.45],
+            "rotation": 3.45
+          },
+          "desktop": {
+            "position": [37.2,-54.59,-30.45],
+            "rotation": 3.45
+          }
+        },
+        "source": "none"
+      },
+      {
         "name" : "SerialKillers",
         "format": {
           "mobile": {
-            "position": [-13.5,-60,-35],
+            "position": [-13.5,-100,-35],
             "rotation": 0.85
           },
           "tablet": {
-            "position": [-15.95,-61,-25],
+            "position": [-15.95,-101,-25],
             "rotation": 0.567
           },
           "desktop": {
-            "position": [-15.95,-61,-11],
+            "position": [-15.95,-101,-11],
             "rotation": 0.921
           }
         },
         "size": [14,20,14],
-        "source": "test"
+        "source": "sk_p1"
       },
       {
         "name" : "SerialKillersBis",
@@ -242,35 +319,35 @@
         "rotation": 5.675,
         "format": {
           "mobile": {
-            "position": [10,-72,-25],
+            "position": [10,-112,-25],
             "rotation": 5.675
           },
           "tablet": {
-            "position": [18,-66,-28],
+            "position": [18,-106,-28],
             "rotation": 5.675
           },
           "desktop": {
-            "position": [22,-66,-28],
+            "position": [22,-106,-28],
             "rotation": 5.675
           }
         },
         "size": [7,10,7],
-        "source": "test"
+        "source": "sk_p2"
       },
       {
         "name" : "SerialKillers_bg1",
         "size": [5,7.5,5],
         "format": {
           "mobile": {
-            "position": [-10,-90,-45],
+            "position": [-10,-120,-45],
             "rotation": 3.955
           },
           "tablet": {
-            "position": [51,-90,-45],
+            "position": [51,-120,-45],
             "rotation": 3.955
           },
           "desktop": {
-            "position": [51,-90,-45],
+            "position": [51,-120,-45],
             "rotation": 3.955
           }
         },
@@ -280,31 +357,31 @@
         "name" : "FalloutBNR",
         "format": {
           "mobile": {
-            "position": [11,-107.5,-35],
+            "position": [11,-147.5,-35],
             "rotation": 5.575
           },
           "tablet": {
-            "position": [13,-99.5,-25],
+            "position": [13,-139.5,-25],
             "rotation": 5.575
           },
           "desktop": {
-            "position": [13,-99.5,-12],
+            "position": [13,-139.5,-12],
             "rotation": 5.575
           }
         },
         "size": [10,15,10],
-        "source": "test"
+        "source": "fallout_p1"
       },
       {
         "name" : "FalloutBNR_bg1",
-        "position": [-15,-105,-6.25],
+        "position": [-15,-145,-6.25],
         "size": [2,4,2],
         "rotation": 2.944,
         "source": "none"
       },
       {
         "name" : "FalloutBNR_bg2",
-        "position": [-16,-85.5,-25],
+        "position": [-16,-125.5,-25],
         "size": [4,7.5,4],
         "rotation": 3.15,
         "source": "none"
@@ -352,11 +429,11 @@
     {
       "color": "",
       "title": "Sibö",
-      "content": "text test",
+      "content": "In this video game, crafted in Unity as a final year project for BDDI at Gobelins School of the Image, embark on an epic and emotional journey through the eyes of twin brothers. Take the time to lose yourself in this beautiful cell-shaded world, entirely created by our team, and let your imagination take flight. Experience a unique journey through the dreamlike landscapes of Sibö.",
       "job": "Developer <br/> Level Designer <br/> Game Designer",
-      "stack": "Unity",
-      "status": "WIP",
-      "credits" : "Lena ENG<br/>Ibrahima Kaba",
+      "stack": "Unity<br/>ShaderGraph<br/>ProBuilder",
+      "status": "Work in progress",
+      "credits" : "Lena ENG<br/>Ibrahima KABA<br/>Lina ABOUSSAIR<br/>Jessy RANGASAMY<br/>Kylian MENDY",
       "photos": [
         "sibo_d1",
         "sibo_d2",
@@ -365,34 +442,34 @@
         "none"
       ],
       "video": "none",
-      "website" : "none",
-      "github": "none"
+      "website" : "test",
+      "github": "test"
     },
     {
       "title": "A Deux mains",
-      "content": "text test",
+      "content": "In this student project at Gobelins School, conceived in collaboration with the Musée de l'Orangerie in Paris, journey through the legendary streets of Montmartre to uncover the story behind \"Les Arts à Paris\" collection. It is through the letters of Guillaume Apollinaire that you will discover the poet's contribution to Paul Guillaume's art collection. Immerse yourself in the Paris of the 1920s through our immersive experience, rendered in a distinctive, sketch-like style.",
       "job": "Front-end Developer  <br/> Webgl Developer",
       "stack": "Three.js <br> GSAP",
       "status": "Done",
-      "credits" : "Ibrahima Kaba",
+      "credits" : "Ibrahima KABA<br/>Lina ABOUSSAIR<br/>Jessy RANGASAMY",
       "photos": [
-        "test",
-        "test",
-        "test",
-        "test",
-        "test"
+        "adm_d1",
+        "adm_d2",
+        "adm_d3",
+        "adm_m1",
+        "none"
       ],
       "video": "none",
-      "website" : "none",
+      "website" : "https://a-deux-mains.vercel.app/",
       "github": "none"
     },
     {
       "title": "Firefly Bender",
-      "content": "text test",
-      "job": "Front-end Developer  <br/> Webgl Developer",
-      "stack": "Three.js <br> GSAP",
-      "status": "Done",
-      "credits" : "Ibrahima Kaba",
+      "content": "Firefly Bender is an immersive installation inspired by Avatar The Last Airbender. Perform natural, choreographic movements to become one with the fireflies. Their movements are governed by a 3D Boids algorithm, realized through Three.js and motion capture via MediaPipe. This project is in its nascent stage, and I look forward to refining it for future release.",
+      "job": "Front-end Developer <br/> Webgl Developer <br/> Web Designer",
+      "stack": "Three.js <br> MediaPipe <br>GSAP",
+      "status": "Work in progress",
+      "credits" : "",
       "photos": [
         "test",
         "test",
@@ -400,45 +477,45 @@
         "test",
         "test"
       ],
-      "video": "none",
+      "video": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/5UI9Uy7xS5E?start=6\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n",
       "website" : "none",
       "github": "none"
     },
     {
       "title": "Serial Killers",
-      "content": "text test",
+      "content": "Serial Killers is a student project from Gobelins, themed around data visualization. Set off on the trail of a serial killer in an investigative game, harnessing acquired data to deduce the identity of the criminal. Explore the killer's apartment, rendered in a chilling and morbid atmosphere, crafted through Blender and Three.js. Dive into a gripping exploration of truth concealed within the mundane, and discover a sinister world beneath the veneer of the ordinary.",
       "job": "Front-end Developer  <br/> Webgl Developer",
       "stack": "Three.js <br> GSAP",
       "status": "Done",
-      "credits" : "Ibrahima Kaba",
+      "credits" : "Wendy PAULOS",
       "photos": [
-        "test",
-        "test",
-        "test",
-        "test",
-        "test"
+        "sk_d1",
+        "sk_d2",
+        "sk_d3",
+        "sk_m1",
+        "none"
       ],
       "video": "none",
       "website" : "none",
       "github": "none"
     },
     {
-      "title": "Fallout: Brand New Road",
-      "content": "text test",
-      "job": "Front-end Developer  <br/> Webgl Developer",
-      "stack": "Three.js <br> GSAP",
+      "title": "Fallout <span> Brand New Road</span>",
+      "content": "Fallout - Brand New Road is a personal project I undertook solo, while juggling my first year of DUT Computer Science. This fan website serves as a homage to Bethesda's famed Fallout franchise. I created this site with the aim of introducing newcomers to the iconic universe that comprises the Fallout series. Embark on this digital journey and explore the lore of these legendary games from a fresh perspective",
+      "job": "Front-end Developer<br> Web Designer <br> Graphist",
+      "stack": "Jquery <br> Fullpage.js",
       "status": "Done",
-      "credits" : "Ibrahima Kaba",
+      "credits" : "",
       "photos": [
-        "test",
-        "test",
-        "test",
-        "test",
+        "fallout_d1",
+        "fallout_d2",
+        "fallout_d3",
+        "fallout_m1",
         "test"
       ],
       "video": "none",
-      "website" : "none",
-      "github": "none"
+      "website" : "https://victor-sin.github.io/",
+      "github": "https://github.com/Victor-Sin/Victor-Sin.github.io"
     }
   ]
 }

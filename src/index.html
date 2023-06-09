@@ -10,12 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Unbounded:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <body>
     <canvas class="webgl"></canvas>
-    <canvas id="maskCanvas" width="300" height="300"></canvas>
     <header>
         <nav>
-            <p class="nav-title">VS</p>
-            <h1 class="nav-title">Victor SIN | CREATIVE DEVELOPER</h1>
-            <a class="nav-title">ABOUT</a>
+            <p class="nav-title">SIN</p>
+            <div class="navButtons">
+                <button class="nav-title close"  >CLOSE</button>
+                <button class="nav-title about"  >ABOUT</button>
+            </div>
 
         </nav>
     </header>
@@ -33,7 +34,7 @@
                         </div>
                     </h1>
                     <div class="textContainer">
-                        <h4 class="date">Two Weeks - January, 2023</h4>
+                        <h4 class="date">Three Months - June, 2023</h4>
                     </div>
                     <button class="more">
                         <span>See more</span>
@@ -121,7 +122,7 @@
                         </div>
                     </h1>
                     <div class="textContainer">
-                        <h4 class="date">Two Week - October, 2021</h4>
+                        <h4 class="date">Two Weeks - October, 2021</h4>
                     </div>
                     <button class="more">
                         <span>See more</span>
@@ -131,24 +132,23 @@
             </div>
         </section>
         <div class="section">
-            <!--            <h1 class="sectionTitle"> About</h1>-->
-            <div class="aboutContent">
-                <!--                <p class="presentation">-->
-                <!--                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aliquid dicta dignissimos eos itaque laudantium neque nisi odio officiis pariatur repellat repellendus sapiente, suscipit veritatis voluptate. Eius ipsa natus quam.-->
-                <!--                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aliquid dicta dignissimos eos itaque laudantium neque nisi odio officiis pariatur repellat repellendus sapiente, suscipit veritatis voluptate. Eius ipsa natus quam.-->
-                <!--                </p>-->
+<!--            <h1 class="sectionTitle"> Victor <br/>SIN</h1>-->
+            <div class="aboutContent" id="about">
+                                <p class="presentation">
+                                    I am Victor Sin, a Creative Developer based in Paris, currently at the Gobelins school. I thrive in creating immersive experiences between the reality and digital. Whether it's through the intricate patterns of Three.js or the limitless possibilities of Unity, I delight in bringing life to a range of platforms - from installations and video games to dynamic websites. With an eye for composition, I also delve into web and game design, as part of my approach to creating memorable and sensational experiences.
+                                </p>
 
-                <!--                <div class="contact">-->
-                <!--                    <h3 class="title">Contact</h3>-->
-                <!--                    <p class="info">sin.victor@outlook.fr</p>-->
-                <!--                    <p class="info">+33 7 67 71 14 10</p>-->
-                <!--                    <div class="socials">-->
-                <!--                        <a href="" class="network">Linkedin</a>-->
-                <!--                        <a href="" class="network">Instagram</a>-->
-                <!--                        <a href="" class="network">Behance</a>-->
-                <!--                        <a href="" class="network">Github</a>-->
-                <!--                    </div>-->
-                <!--                </div>-->
+                                <div class="contact">
+                                    <h3 class="title">Contact</h3>
+                                    <p class="info">sin.victor@outlook.fr</p>
+                                    <p class="info">+33 7 67 71 14 10</p>
+                                    <div class="socials">
+                                        <a href="" class="network">Linkedin</a>
+                                        <a href="" class="network">Instagram</a>
+                                        <a href="" class="network">Behance</a>
+                                        <a href="" class="network">Github</a>
+                                    </div>
+                                </div>
             </div>
 
         </div>
@@ -184,12 +184,18 @@
                     </div>
                 </div>
                 <div class=" projectLinks">
-                    <a href="" class="website">Open project</a>
+                    <a href="" class="website" target="_blank">Open project</a>
                     <a href="" class="github">Github</a>
                 </div>
+
+
             </div>
+
+            <div class="video">
+            </div>
+
 <!--            <div class="container">-->
-<!--                <img src="textures/desktop_3.png" alt="" class="img">-->
+<!--                <img src="textures/sibo/Desktop_1.jpg" alt="" class="img">-->
 <!--            </div>-->
 <!--            <div class="container md">-->
 <!--                <img src="textures/desktop_3.png" alt="" class="img">-->
@@ -201,6 +207,9 @@
 
     </section>
 
+    <div class="loader">
+        <p class="progress">0%</p>
+    </div>
 
 
 

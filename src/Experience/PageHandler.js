@@ -3,6 +3,7 @@ import Lenis from "@studio-freight/lenis";
 import Monolith from "./World/GlobalScene/Monolith";
 import data from "../data.json";
 import gsap,{Circ} from "gsap";
+import * as THREE from "three";
 
 export default class PageHandler extends Entity{
     static instance = null
@@ -23,6 +24,7 @@ export default class PageHandler extends Entity{
         this.initScroll()
         this.initScrollProject()
         this.initProjectHandler()
+        this.initEvents()
     }
 
 
@@ -183,7 +185,7 @@ export default class PageHandler extends Entity{
                 scroller: '.projectWrapper',
                 endTrigger: ".projectWrapper",
                 end: "bottom center",  // l'animation se terminera lorsque le bas de #endElement atteindra le centre de la fenêtre de défilement
-                markers: true,
+                // markers: true,
                 scrub: true,
             }
         })
@@ -226,10 +228,51 @@ export default class PageHandler extends Entity{
                 duration:2,
                 ease: Circ.easeInOut
             },"<")
+            .to(".close",{
+                opacity:1,
+                pointerEvents: "auto",
+                duration:2,
+                ease: Circ.easeInOut
+            },"<")
             .to(".projectPage",{
                 opacity:1,
-                duration:1.5
-            },"<1.25");
+                duration: this.tlProj.reversed() ? .5 : 1.5
+            },this.tlProj.reversed() ? "<" : "<1.25" );
+    }
+
+    backToSection(target){
+        this.mainLenis.scrollTo(target,{
+            duration:2,
+            easing: (t) => 1 - Math.pow(1 - t, 3), // https://www.desmos.com/calculator/brs54l4xou
+        })
+    }
+
+    initEvents(){
+
+
+        document.querySelector('p.nav-title').addEventListener("click",() => {
+            if(this.onProject){
+                this.toggleProjectAnimation();
+                setTimeout(() => {
+                    this.backToSection(0);
+                },500)
+            }
+            else{
+                this.backToSection(0);
+            }
+        })
+
+        document.querySelector('.about').addEventListener("click",() => {
+            if(this.onProject){
+                this.toggleProjectAnimation();
+                setTimeout(() => {
+                    this.backToSection(document.getElementById("about"));
+                },500)
+            }
+            else{
+                this.backToSection(document.getElementById("about"));
+            }
+        })
 
         document.querySelectorAll(".more").forEach((elt,i) => {
             elt.addEventListener("click",() => {
@@ -239,10 +282,8 @@ export default class PageHandler extends Entity{
             })
         })
 
-        document.querySelector(".projectPage").addEventListener("click",() => {
-
+        document.querySelector(".close").addEventListener("click",() => {
             this.toggleProjectAnimation();
-
         })
     }
 
@@ -288,6 +329,17 @@ export default class PageHandler extends Entity{
             document.querySelector(".website").href =  this.data[index].website ;
             document.querySelector(".github").style.display =  this.data[index].github == "none" ? "none" : "inline-block";
             document.querySelector(".github").href =  this.data[index].github ;
+
+            if(this.data[index].video != "none"){
+                document.querySelector(".video").innerHTML =  this.data[index].video;
+                document.querySelector(".projectPage").classList.add("videoPage")
+                this.world.projectImages.visible = false;
+            }
+            else{
+                document.querySelector(".video").innerHTML = "";
+                document.querySelector(".projectPage").classList.remove("videoPage")
+                this.world.projectImages.visible = true;
+            }
             this.changeGroupImages(this.world.projectImages);
 
         }
@@ -335,9 +387,6 @@ export default class PageHandler extends Entity{
                         if(image == undefined){
                             object.material.uniforms.uOpacity.value = 0;
                         }
-                        else{
-                            object.material.uniforms.uOpacity.value = 1;
-                        }
                     }
 
                     object.material.uniforms.uTexture.value = image;
@@ -346,6 +395,8 @@ export default class PageHandler extends Entity{
             }
         });
     }
+
+
 
     update()
     {

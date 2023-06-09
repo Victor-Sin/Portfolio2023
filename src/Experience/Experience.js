@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-
+import Stats from 'stats.js'
 import Debug from './Utils/Debug.js'
 import Sizes from './Utils/Sizes.js'
 import Time from './Utils/Time.js'
@@ -23,7 +23,10 @@ export default class Experience
             return instance
         }
         instance = this
-        
+
+        // this.stats = new Stats();
+        // this.stats.showPanel( 1 ); // 0: fps, 1: ms, 2: mb, 3+: custom
+        // document.body.appendChild( this.stats.dom );
         // Global access
         window.experience = this
 
@@ -63,9 +66,11 @@ export default class Experience
 
     update()
     {
+        // this.stats.begin();
         this.camera.update()
         this.world.update()
         this.renderer.update()
+        // this.stats.end();
     }
 
     destroy()

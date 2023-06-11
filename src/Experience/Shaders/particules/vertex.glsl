@@ -1,5 +1,6 @@
 uniform float uSize;
 uniform float uTime;
+uniform bool uIos;
 varying vec2 vUv;
 attribute float aScale;
 
@@ -26,7 +27,7 @@ void main() {
     float pointScale = uSize * aScale;
     pointScale *= 0.1 + (1.0 / -viewPosition.z);
     pointScale *= sin(randVal * 100.0 + uTime * 0.001);
-    gl_PointSize = pointScale;
+    gl_PointSize = uIos ? 12.5 : pointScale;
 
     vUv = uv;
 }

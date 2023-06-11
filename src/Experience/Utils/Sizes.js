@@ -18,10 +18,14 @@ export default class Sizes extends EventEmitter
         this.initResizeEvent()
     }
 
+    isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
     resizeWindowHandler(){
         this.setFormat()
         this.width = window.innerWidth
-        this.height = window.innerHeight
+        this.height =  this.format = "mobile" ?  window.outerHeight : window.innerHeight ;
         this.pixelRatio = Math.min(window.devicePixelRatio, 2)
         this.eventsResize.forEach(eltFunct => {
             eltFunct();
@@ -31,8 +35,8 @@ export default class Sizes extends EventEmitter
     }
 
     initResizeEvent(){
-        window.removeEventListener("mousemove", this.resizeWindowHandler.bind(this))
-        window.addEventListener("mousemove", this.resizeWindowHandler.bind(this))
+        window.removeEventListener("resize", this.resizeWindowHandler.bind(this))
+        window.addEventListener("resize", this.resizeWindowHandler.bind(this))
     }
 
     setFormat(){

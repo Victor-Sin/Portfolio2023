@@ -53,7 +53,10 @@ export default class PageHandler extends Entity{
             this.environment.mainLight.intensity = Math.max(20 - (this.environment.mainLight.position.y / -180)*40,1)
             this.scene.fog.color = this.world.fogColor.lerpColors(this.world.fogColor,this.world.finalFogColor,(this.scrollY/this.experience.sizes.height * 40) / -180  )
 
-
+            if(this.sizes.format == "mobile") {
+                this.world.projectImages.position.y = this.scrollY / this.experience.sizes.height * 40 + scroll / this.experience.sizes.height * 17.5 * (this.sizes.format === "mobile" ? 2 : 1);
+                this.world.projectImages.position.y += this.sizes.format === "mobile" ? -5 : -2.5;
+            }
         })
 
         const projects = gsap.utils.toArray('.project');
@@ -298,7 +301,9 @@ export default class PageHandler extends Entity{
 
         } else {
             this.tlProj.play();
-            this.mainLenis.stop()
+            if(this.sizes.format == "desktop"){
+                this.mainLenis.stop()
+            }
             this.projectLenis.start();
             this.projectLenis.scrollTo(10,{
                 immediate: true

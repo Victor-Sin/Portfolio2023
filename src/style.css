@@ -12,10 +12,14 @@ html{
     scroll-behavior: initial;
 }
 
+:root{
+    background :linear-gradient(360deg, rgb(5, 7, 21) 5%, rgb(46, 70, 82) 92.5%, rgb(76, 108, 124) 110%);
+
+}
+
 html,
 body
 {
-    background :linear-gradient(360deg, rgb(5, 7, 21) 5%, rgb(46, 70, 82) 92.5%, rgb(76, 108, 124) 110%);
     min-height: 100%;
     height: auto;
     --textColor : #7be6ff;
@@ -40,6 +44,7 @@ html {
     top: 0;
     left: 0;
     outline: none;
+    height: 100svh ;
 }
 
 #maskCanvas {
@@ -95,7 +100,7 @@ header nav{
 
 .section{
     position: relative;
-    height: 100vh;
+    height: 100lvh;
     width: 100%;
     mix-blend-mode: color-dodge;
     opacity: 26%;
@@ -453,7 +458,7 @@ h1{
     }
 
     .projectPage{
-        height: 225vh;
+        height: 375svh;
         padding: 20% 20px 0;
     }
 
@@ -476,7 +481,11 @@ h1{
         font-size: 3rem;
     }
 
-    .disableMobile{
-        display: block;
+    .videoPage{
+        height: 150svh;
     }
+
+    /*.disableMobile{*/
+    /*    display: block;*/
+    /*}*/
 }

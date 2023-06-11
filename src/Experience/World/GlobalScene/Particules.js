@@ -57,7 +57,8 @@ export default class Particules extends Entity
             fragmentShader: fragment,
             uniforms:{
                 uSize: {value: 125},
-                uTime: {value: this.time.elapsed}
+                uTime: {value: this.time.elapsed},
+                uIos : {value: this.sizes.isIOS()}
             }
         })
     }

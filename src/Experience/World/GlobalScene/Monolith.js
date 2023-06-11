@@ -215,7 +215,7 @@ export default class Monolith extends Entity
     }
 
     setParams(){
-        this.monolith.position.set(this.dataMonolithInfos.position[0],this.dataMonolithInfos.position[1],this.dataMonolithInfos.position[2])
+        this.monolith.position.set(this.dataMonolithInfos.position[0], this.dataMonolithInfos.position[1],this.dataMonolithInfos.position[2])
         this.#block.material.color = this.#block.material.color.lerp(new THREE.Color("#0F1724"), Math.max(0,this.dataMonolithInfos.position[1]/-180))
         this.monolith.scale.set(...this.dataMonolith.size)
         this.monolith.rotation.y = this.dataMonolithInfos.rotation;

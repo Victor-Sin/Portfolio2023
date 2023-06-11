@@ -234,7 +234,7 @@
           }
         },
         "size": [12.5,20,12.5],
-        "source": "adm_p1"
+        "source": "firefly_p1"
       },
       {
         "name" : "FireflyBender_bg1",
@@ -441,7 +441,7 @@
         "none"
       ],
       "video": "none",
-      "website" : "test",
+      "website" : "https://kaba92.itch.io/sibo",
       "github": "test"
     },
     {

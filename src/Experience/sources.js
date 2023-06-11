@@ -127,5 +127,10 @@ export default [
         type: 'texture',
         path: 'textures/fallout/Mobile_1.jpg'
     },
+    {
+        name: 'firefly_p1',
+        type: 'texture',
+        path: 'textures/firefly/p1.jpg'
+    },
 
 ]
